@@ -5,7 +5,7 @@ config({ override: true }); // ключі проєкту важливіші за
 import { readFileSync, writeFileSync } from "node:fs";
 import { toTranscript } from "../src/lib/stt";
 import { extract } from "../src/lib/extract";
-import { claudeCost } from "../src/lib/pricing";
+import { getModel, modelCost } from "../src/lib/models";
 
 async function main() {
 const path = process.argv[2];
@@ -29,6 +29,6 @@ for (const c of e.commitments) {
 }
 console.log("\nopen questions:");
 for (const q of e.openQuestions) console.log(`  ? ${q.question} — «${q.quote.text}» @ ${q.quote.start.toFixed(1)}s`);
-console.log(`\n${ms} ms · ${r.usage.inputTokens} in / ${r.usage.outputTokens} out · $${claudeCost(r.usage.inputTokens, r.usage.outputTokens).toFixed(4)}`);
+console.log(`\n${ms} ms · ${r.usage.inputTokens} in / ${r.usage.outputTokens} out · $${modelCost(getModel(r.model), r.usage.inputTokens, r.usage.outputTokens).toFixed(4)}`);
 }
 main().catch((e) => { console.error(e); process.exit(1); });

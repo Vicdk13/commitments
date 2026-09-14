@@ -8,7 +8,8 @@ config({ override: true });
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { transcribe } from "../src/lib/stt";
 import { extract } from "../src/lib/extract";
-import { claudeCost, scribeCost } from "../src/lib/pricing";
+import { scribeCost } from "../src/lib/pricing";
+import { getModel, modelCost } from "../src/lib/models";
 import type { Commitment, Extraction, Transcript } from "../src/lib/types";
 
 type Check = {
@@ -79,9 +80,9 @@ async function main() {
     const t1 = Date.now();
     const r = await extract(transcript);
     const llmMs = Date.now() - t1;
-    const usd = claudeCost(r.usage.inputTokens, r.usage.outputTokens, r.model) + scribeCost(transcript.durationSec);
+    const usd = modelCost(getModel(r.model), r.usage.inputTokens, r.usage.outputTokens) + scribeCost(transcript.durationSec);
     writeFileSync(`${base}.extract.json`, JSON.stringify({ ...r, ms: llmMs }, null, 2), "utf8");
-    report.push(`LLM: ${r.model}, effort=${process.env.EXTRACT_EFFORT || "high"}, ${llmMs} мс, ${r.usage.inputTokens} in / ${r.usage.outputTokens} out`);
+    report.push(`LLM: ${r.model}, effort=${r.effort}, ${llmMs} мс, ${r.usage.inputTokens} in / ${r.usage.outputTokens} out`);
     report.push(`Разом: ${((sttMs + llmMs) / 1000).toFixed(1)} с, $${usd.toFixed(4)}, $${(usd / (transcript.durationSec / 60)).toFixed(4)}/хв`, "");
     totalUsd += usd; totalMs += sttMs + llmMs; totalMin += transcript.durationSec / 60;
 

@@ -11,7 +11,7 @@
 ```
 аудіо (≤3 хв, 2 спікери)
   → ElevenLabs Scribe v1: текст + пословні таймкоди + хто говорить      ~3–8 с
-  → Claude Opus 5 (structured output за схемою): фінальні домовленості ~20–30 с
+  → Claude Sonnet 5 або Opus 5 на вибір (structured output за схемою): домовленості ~10–30 с
   → сервер прив'язує кожну цитату до секунд по словах Scribe (модель не вгадує час)
   → UI: список + плеєр фрагментів + розшифровка + час/вартість запуску
 ```
@@ -66,7 +66,8 @@ src/app/api/transcribe        POST multipart → Scribe → репліки з т
 src/app/api/extract           POST розшифровка → Claude → домовленості
 src/lib/stt.ts                виклик Scribe, склейка слів у репліки
 src/lib/extract.ts            промпт, схема відповіді (zod), прив'язка цитат до секунд
-src/lib/pricing.ts            ціни й формули вартості
+src/lib/models.ts             реєстр моделей аналізу, ціни, effort за замовчуванням
+src/lib/pricing.ts            ціна розпізнавання
 src/components/Results.tsx    картки зобов'язань і питань
 src/components/Metrics.tsx    таблиця часу/вартості
 ```

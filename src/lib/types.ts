@@ -67,8 +67,20 @@ export type StageMetrics = {
   detail: string;
 };
 
+export type ExtractMetrics = StageMetrics & { inputTokens: number; outputTokens: number };
+
 export type Metrics = {
   transcribe?: StageMetrics;
-  extract?: StageMetrics & { inputTokens: number; outputTokens: number };
+  extract?: ExtractMetrics;
   audioMinutes: number;
+};
+
+/** Один прогін аналізу на тій самій розшифровці — щоб порівнювати моделі. */
+export type ExtractRun = {
+  id: string;
+  model: string;
+  modelLabel: string;
+  effort: string;
+  extraction: Extraction;
+  metrics: ExtractMetrics;
 };

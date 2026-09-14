@@ -1,7 +1,8 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import type { Extraction, Metrics as M, Quote, Transcript } from "@/lib/types";
+import type { ExtractRun, Quote, StageMetrics, Transcript } from "@/lib/types";
+import { DEFAULT_MODEL_ID, MODELS, getModel, type Effort } from "@/lib/models";
 import { fmtTime } from "@/lib/format";
 import { Results } from "@/components/Results";
 import { Metrics } from "@/components/Metrics";
@@ -14,6 +15,12 @@ const SAMPLES = [
   { file: "03-no-conclusion.mp3", label: "Без домовленостей, обірваний (1 хв)" },
 ];
 
+const EFFORTS: { id: Effort; label: string }[] = [
+  { id: "low", label: "low — швидко" },
+  { id: "medium", label: "medium" },
+  { id: "high", label: "high — ретельно" },
+];
+
 export default function Page() {
   const [file, setFile] = useState<File | null>(null);
   const [url, setUrl] = useState<string | null>(null);
@@ -21,13 +28,19 @@ export default function Page() {
   const [stage, setStage] = useState<Stage>("idle");
   const [error, setError] = useState<string | null>(null);
   const [transcript, setTranscript] = useState<Transcript | null>(null);
-  const [extraction, setExtraction] = useState<Extraction | null>(null);
-  const [metrics, setMetrics] = useState<M>({ audioMinutes: 0 });
+  const [transcribeMetrics, setTranscribeMetrics] = useState<StageMetrics | undefined>();
+  const [runs, setRuns] = useState<ExtractRun[]>([]);
+  const [activeRunId, setActiveRunId] = useState<string | null>(null);
   const [over, setOver] = useState(false);
+
+  const [modelId, setModelId] = useState<string>(DEFAULT_MODEL_ID);
+  const [effort, setEffort] = useState<Effort>(getModel(DEFAULT_MODEL_ID).defaultEffort);
 
   const audioRef = useRef<HTMLAudioElement>(null);
   const [active, setActive] = useState<Quote | null>(null);
   const stopAt = useRef<number | null>(null);
+
+  const activeRun = runs.find((r) => r.id === activeRunId) ?? null;
 
   // ---------- звук ----------
   useEffect(() => {
@@ -69,21 +82,30 @@ export default function Page() {
   const reset = () => {
     if (url) URL.revokeObjectURL(url);
     setFile(null); setUrl(null); setDuration(0); setStage("idle"); setError(null);
-    setTranscript(null); setExtraction(null); setMetrics({ audioMinutes: 0 }); setActive(null);
+    setTranscript(null); setTranscribeMetrics(undefined); setRuns([]); setActiveRunId(null); setActive(null);
   };
 
-  const runExtract = useCallback(async (t: Transcript) => {
+  const runExtract = useCallback(async (t: Transcript, m: string, e: Effort) => {
     setStage("extracting");
     setError(null);
     const res = await fetch("/api/extract", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ transcript: t }),
+      body: JSON.stringify({ transcript: t, model: m, effort: e }),
     });
     const data = await res.json();
     if (!res.ok) { setError(data.error ?? "Помилка аналізу"); setStage("error"); return; }
-    setExtraction(data.extraction);
-    setMetrics((m) => ({ ...m, extract: data.metrics }));
+    const run: ExtractRun = {
+      id: `${Date.now()}`,
+      model: data.model,
+      modelLabel: data.modelLabel,
+      effort: data.effort,
+      extraction: data.extraction,
+      metrics: data.metrics,
+    };
+    setRuns((rs) => [...rs, run]);
+    setActiveRunId(run.id);
+    setActive(null);
     setStage("done");
   }, []);
 
@@ -100,10 +122,10 @@ export default function Page() {
     if (!res.ok) { setError(data.error ?? "Помилка розпізнавання"); setStage("error"); return; }
     const t: Transcript = data.transcript;
     setTranscript(t);
-    setMetrics({ transcribe: data.metrics, audioMinutes: t.durationSec / 60 });
-    await runExtract(t);
+    setTranscribeMetrics(data.metrics);
+    await runExtract(t, modelId, effort);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [runExtract]);
+  }, [runExtract, modelId, effort]);
 
   const onFiles = (files: FileList | null) => {
     const f = files?.[0];
@@ -116,10 +138,18 @@ export default function Page() {
     void process(new File([b], name, { type: "audio/mpeg" }));
   };
 
-  const copyJson = () => {
-    if (!extraction) return;
-    void navigator.clipboard.writeText(JSON.stringify({ extraction, metrics }, null, 2));
+  const onModelChange = (id: string) => {
+    setModelId(id);
+    setEffort(getModel(id).defaultEffort);
   };
+
+  const copyJson = () => {
+    if (!activeRun) return;
+    void navigator.clipboard.writeText(JSON.stringify({ ...activeRun, transcribe: transcribeMetrics }, null, 2));
+  };
+
+  const busy = stage === "transcribing" || stage === "extracting";
+  const spec = getModel(modelId);
 
   return (
     <main className="wrap">
@@ -130,6 +160,27 @@ export default function Page() {
         </div>
         <div className="meta">до 3 хв · 2 спікери · одна мова</div>
       </header>
+
+      <div className="controls">
+        <label>
+          <span>Модель</span>
+          <select value={modelId} onChange={(e) => onModelChange(e.target.value)} disabled={busy}>
+            {MODELS.map((m) => <option key={m.id} value={m.id}>{m.label}</option>)}
+          </select>
+        </label>
+        <label>
+          <span>Effort</span>
+          <select value={effort} onChange={(e) => setEffort(e.target.value as Effort)} disabled={busy || !spec.supportsEffort}>
+            {EFFORTS.map((e) => <option key={e.id} value={e.id}>{e.label}</option>)}
+          </select>
+        </label>
+        <div className="model-note">{spec.note} · ${spec.inputUsdPerMTok} / ${spec.outputUsdPerMTok} за 1M токенів</div>
+        {transcript && !busy && (
+          <button className="rerun" onClick={() => void runExtract(transcript, modelId, effort)}>
+            Проаналізувати цією моделлю
+          </button>
+        )}
+      </div>
 
       {!file && (
         <label
@@ -167,12 +218,12 @@ export default function Page() {
           <Step
             state={stage === "transcribing" ? "running" : transcript ? "done" : stage === "error" && !transcript ? "error" : "idle"}
             label="Розпізнавання"
-            sub={metrics.transcribe ? `${(metrics.transcribe.ms / 1000).toFixed(1)} с` : stage === "transcribing" ? "ElevenLabs Scribe…" : ""}
+            sub={transcribeMetrics ? `${(transcribeMetrics.ms / 1000).toFixed(1)} с` : stage === "transcribing" ? "ElevenLabs Scribe…" : ""}
           />
           <Step
-            state={stage === "extracting" ? "running" : extraction ? "done" : stage === "error" && transcript ? "error" : "idle"}
+            state={stage === "extracting" ? "running" : activeRun ? "done" : stage === "error" && transcript ? "error" : "idle"}
             label="Аналіз домовленостей"
-            sub={metrics.extract ? `${(metrics.extract.ms / 1000).toFixed(1)} с` : stage === "extracting" ? "Claude читає розшифровку…" : ""}
+            sub={stage === "extracting" ? `${spec.label} читає розшифровку…` : activeRun ? `${activeRun.modelLabel} · ${(activeRun.metrics.ms / 1000).toFixed(1)} с` : ""}
           />
         </div>
       )}
@@ -180,16 +231,16 @@ export default function Page() {
       {error && (
         <div className="error">
           {error}
-          {transcript && !extraction && <> · <button className="reset" onClick={() => void runExtract(transcript)}>Повторити аналіз</button></>}
+          {transcript && <> · <button className="reset" onClick={() => void runExtract(transcript, modelId, effort)}>Повторити аналіз</button></>}
         </div>
       )}
 
-      {extraction && (
+      {activeRun && (
         <>
           <div className="actions">
             <button onClick={copyJson}>Скопіювати JSON</button>
           </div>
-          <Results extraction={extraction} activeQuote={active} onPlay={playQuote} />
+          <Results extraction={activeRun.extraction} activeQuote={active} onPlay={playQuote} />
         </>
       )}
 
@@ -198,7 +249,7 @@ export default function Page() {
           <summary>Розшифровка <span>{transcript.turns.length} реплік · натисніть час, щоб перейти</span></summary>
           <div className="turns">
             {transcript.turns.map((t) => {
-              const name = extraction?.speakers.find((s) => s.label === t.speaker)?.name ?? t.speaker;
+              const name = activeRun?.extraction.speakers.find((s) => s.label === t.speaker)?.name ?? t.speaker;
               const hl = active?.turnIndex === t.index;
               return (
                 <div key={t.index} className={`turn ${hl ? "hl" : ""}`}>
@@ -212,7 +263,15 @@ export default function Page() {
         </details>
       )}
 
-      {(metrics.transcribe || metrics.extract) && <Metrics m={metrics} />}
+      {(transcribeMetrics || runs.length > 0) && (
+        <Metrics
+          transcribe={transcribeMetrics}
+          audioMinutes={transcript ? transcript.durationSec / 60 : 0}
+          runs={runs}
+          activeRunId={activeRunId}
+          onSelectRun={(id) => { setActiveRunId(id); setActive(null); }}
+        />
+      )}
     </main>
   );
 }

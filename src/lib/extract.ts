@@ -2,7 +2,7 @@ import Anthropic from "@anthropic-ai/sdk";
 import { zodOutputFormat } from "@anthropic-ai/sdk/helpers/zod";
 import { z } from "zod";
 import type { Commitment, Extraction, OpenQuestion, Quote, Transcript, Turn } from "./types";
-import { PRICING } from "./pricing";
+import { getModel, isEffort, type Effort, type ModelSpec } from "./models";
 
 // ---------- Схема відповіді моделі ----------
 // Модель повертає номер репліки + дослівну цитату; секунди рахує сервер по словах Scribe.
@@ -64,39 +64,72 @@ const SYSTEM = `Ти — асистент, який з розшифровки р
 
 Мова відповіді — та сама, що й у розшифровці.`;
 
+export type ExtractOptions = { model?: string; effort?: Effort };
+
 export type ExtractResult = {
   extraction: Extraction;
   usage: { inputTokens: number; outputTokens: number };
   model: string;
+  effort: Effort;
 };
 
-export async function extract(transcript: Transcript): Promise<ExtractResult> {
-  const client = new Anthropic();
-  // Для експериментів: EXTRACT_MODEL / EXTRACT_EFFORT перекривають типові значення (див. NOTES.md).
-  const model = process.env.EXTRACT_MODEL || PRICING.claude.model;
-  const effort = (process.env.EXTRACT_EFFORT || "high") as "low" | "medium" | "high";
+/**
+ * Витяг домовленостей. Модель і effort — з опцій; якщо не задано — зі змінних
+ * EXTRACT_MODEL / EXTRACT_EFFORT (для CLI-експериментів), інакше типові з реєстру.
+ */
+export async function extract(transcript: Transcript, opts: ExtractOptions = {}): Promise<ExtractResult> {
+  const spec = getModel(opts.model ?? process.env.EXTRACT_MODEL);
+  const envEffort = process.env.EXTRACT_EFFORT;
+  const effort: Effort = opts.effort ?? (isEffort(envEffort) ? envEffort : spec.defaultEffort);
+
+  const parsed = await runExtraction(spec, effort, transcript);
+  return finalize(parsed.output, parsed.usage, spec, effort, transcript);
+}
+
+type Parsed = { output: z.infer<typeof ExtractionSchema>; usage: { inputTokens: number; outputTokens: number } };
+
+// Провайдер-специфічна частина. Новий провайдер — нова гілка тут.
+async function runExtraction(spec: ModelSpec, effort: Effort, transcript: Transcript): Promise<Parsed> {
+  const user = buildUserPrompt(transcript);
+  switch (spec.provider) {
+    case "anthropic": {
+      const client = new Anthropic();
+      const response = await client.messages.parse({
+        model: spec.id,
+        max_tokens: 16000,
+        system: SYSTEM,
+        thinking: { type: "adaptive" },
+        output_config: { effort, format: zodOutputFormat(ExtractionSchema) },
+        messages: [{ role: "user", content: user }],
+      });
+      if (!response.parsed_output) throw new Error("Модель повернула відповідь не за схемою");
+      return {
+        output: response.parsed_output,
+        usage: { inputTokens: response.usage.input_tokens, outputTokens: response.usage.output_tokens },
+      };
+    }
+  }
+}
+
+function buildUserPrompt(transcript: Transcript): string {
 
   const lines = transcript.turns.map(
     (t) => `[${t.index}] ${fmt(t.start)} ${t.speaker}: ${t.text}`,
   );
-  const user = `Розшифровка розмови (тривалість ${fmt(transcript.durationSec)}). Формат рядка: [номер_репліки] час спікер: текст.
+  return `Розшифровка розмови (тривалість ${fmt(transcript.durationSec)}). Формат рядка: [номер_репліки] час спікер: текст.
 
 ${lines.join("\n")}
 
 Склади список фінальних домовленостей за правилами.`;
+}
 
-  const response = await client.messages.parse({
-    model,
-    max_tokens: 16000,
-    system: SYSTEM,
-    thinking: { type: "adaptive" },
-    output_config: { effort, format: zodOutputFormat(ExtractionSchema) },
-    messages: [{ role: "user", content: user }],
-  });
-
-  const parsed = response.parsed_output;
-  if (!parsed) throw new Error("Модель повернула відповідь не за схемою");
-
+function finalize(
+  parsed: z.infer<typeof ExtractionSchema>,
+  usage: { inputTokens: number; outputTokens: number },
+  spec: ModelSpec,
+  effort: Effort,
+  transcript: Transcript,
+): ExtractResult {
   const names = new Map(parsed.speakers.map((s) => [s.label, s.name]));
   const resolveQuote = (q: { turn_index: number; text: string }): Quote =>
     locateQuote(transcript.turns, q.turn_index, q.text, names);
@@ -127,8 +160,9 @@ ${lines.join("\n")}
       commitments,
       openQuestions,
     },
-    usage: { inputTokens: response.usage.input_tokens, outputTokens: response.usage.output_tokens },
-    model,
+    usage,
+    model: spec.id,
+    effort,
   };
 }
 

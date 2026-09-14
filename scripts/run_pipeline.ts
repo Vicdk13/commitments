@@ -6,7 +6,8 @@ import { readFileSync, writeFileSync } from "node:fs";
 import { basename } from "node:path";
 import { transcribe } from "../src/lib/stt";
 import { extract } from "../src/lib/extract";
-import { claudeCost, scribeCost } from "../src/lib/pricing";
+import { scribeCost } from "../src/lib/pricing";
+import { getModel, modelCost } from "../src/lib/models";
 
 async function main() {
   const path = process.argv[2];
@@ -35,7 +36,7 @@ async function main() {
   }
   console.log("\nopen questions:");
   for (const q of e.openQuestions) console.log(`  ? ${q.question} — «${q.quote.text}» @ ${q.quote.start.toFixed(1)}s`);
-  const usd = claudeCost(r.usage.inputTokens, r.usage.outputTokens);
+  const usd = modelCost(getModel(r.model), r.usage.inputTokens, r.usage.outputTokens);
   console.log(`\nLLM: ${eMs} ms · ${r.usage.inputTokens} in / ${r.usage.outputTokens} out · $${usd.toFixed(4)}`);
   console.log(`Разом: ${((tMs + eMs) / 1000).toFixed(1)} с · $${(usd + scribeCost(transcript.durationSec)).toFixed(4)} · $${((usd + scribeCost(transcript.durationSec)) / (transcript.durationSec / 60)).toFixed(4)}/хв аудіо`);
 }
