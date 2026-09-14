@@ -1,0 +1,133 @@
+{
+  "extraction": {
+    "status": "ok",
+    "statusReason": "Розмова містить чіткі фінальні домовленості щодо релізу.",
+    "recordingTruncated": false,
+    "speakers": [
+      {
+        "label": "speaker_0",
+        "name": "Олена"
+      },
+      {
+        "label": "speaker_1",
+        "name": "Дмитро"
+      }
+    ],
+    "commitments": [
+      {
+        "id": "c1",
+        "task": "Виправити дублювання push-сповіщень на Android",
+        "status": "accepted",
+        "owner": "Дмитро",
+        "ownerNote": null,
+        "deadline": {
+          "text": "до п'ятниці",
+          "resolvable": false,
+          "note": "відносна дата, дата запису невідома"
+        },
+        "history": "Спершу домовились на четвер, але через демо для інвесторів перенесли на п'ятницю",
+        "confidence": "high",
+        "quote": {
+          "text": "Окей, тоді до п'ятниці. Push-сповіщення на мені. До п'ятниці.",
+          "speaker": "Дмитро",
+          "start": 72.36,
+          "end": 76.68,
+          "turnIndex": 9
+        }
+      },
+      {
+        "id": "c2",
+        "task": "Переписати авторизацію на новий SDK",
+        "status": "proposed_not_accepted",
+        "owner": null,
+        "ownerNote": "Дмитро запропонував ідею, Олена відхилила зараз, повернутись після релізу",
+        "deadline": {
+          "text": null,
+          "resolvable": false,
+          "note": null
+        },
+        "history": null,
+        "confidence": "high",
+        "quote": {
+          "text": "Слухай, я розумію, але не зараз. У нас реліз через два тижні, і я не хочу чіпати авторизацію перед ним. Давай повернемось до цього після релізу.",
+          "speaker": "Олена",
+          "start": 32.92,
+          "end": 42.22,
+          "turnIndex": 4
+        }
+      },
+      {
+        "id": "c3",
+        "task": "Темна тема в цьому релізі",
+        "status": "cancelled",
+        "owner": null,
+        "ownerNote": "Раніше планували включити в реліз, тепер скасовано через обсяг роботи",
+        "deadline": {
+          "text": null,
+          "resolvable": false,
+          "note": null
+        },
+        "history": "Спочатку планувалась в цьому релізі, потім скасована через більший обсяг роботи, ніж очікувалось",
+        "confidence": "high",
+        "quote": {
+          "text": "Тоді знаєш що? Давай взагалі знімемо, е, темну тему з цього релізу. Не хочу ризикувати. Скасовуємо.",
+          "speaker": "Олена",
+          "start": 93.58,
+          "end": 99.6,
+          "turnIndex": 12
+        }
+      },
+      {
+        "id": "c4",
+        "task": "Оновити скріншоти в App Store під новий дизайн",
+        "status": "accepted",
+        "owner": null,
+        "ownerNote": "Власника ще не визначено, вирішать після повернення Марини з відпустки",
+        "deadline": {
+          "text": "до релізу",
+          "resolvable": false,
+          "note": "дата релізу не вказана в записі"
+        },
+        "history": null,
+        "confidence": "high",
+        "quote": {
+          "text": "Давай поки залишимо як задачу, а хто робитиме, вирішимо, коли Марина повернеться з відпустки.",
+          "speaker": "Олена",
+          "start": 122.12,
+          "end": 127.32,
+          "turnIndex": 16
+        }
+      }
+    ],
+    "openQuestions": [
+      {
+        "id": "q1",
+        "question": "Хто пише текст опису оновлення для стору — Олена чи маркетинг",
+        "quote": {
+          "text": "Не знаю. Це точно не до мене. Запитаю у Сергія.",
+          "speaker": "Дмитро",
+          "start": 139.32,
+          "end": 141.94,
+          "turnIndex": 19
+        }
+      },
+      {
+        "id": "q2",
+        "question": "Чи потрібен банер у застосунку про новий реліз",
+        "quote": {
+          "text": "Подумаю.",
+          "speaker": "Олена",
+          "start": 154.3,
+          "end": 155.16,
+          "turnIndex": 22
+        }
+      }
+    ]
+  },
+  "usage": {
+    "inputTokens": 6758,
+    "outputTokens": 1356
+  },
+  "model": "claude-sonnet-5",
+  "ms": 16159
+}
