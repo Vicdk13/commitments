@@ -174,10 +174,57 @@ details.transcript summary span { color: var(--ink-3); font-weight: 400; font-si
 .actions button { background: none; border: 1px solid var(--line); border-radius: 8px; padding: 6px 12px; color: var(--ink-2); font-size: 13px; }
 .actions button:hover { border-color: var(--ink-2); color: var(--ink); }
 
+/* ---------- mobile: читається як мініапка ---------- */
 @media (max-width: 640px) {
-  .wrap { padding: 28px 14px 64px; }
-  .steps { grid-template-columns: 1fr; }
-  .turn { grid-template-columns: 48px 1fr; }
+  html, body { font-size: 15px; }
+  .wrap { padding: 20px 14px 56px; }
+
+  header.top { flex-direction: column; gap: 6px; margin-bottom: 18px; }
+  header.top h1 { font-size: 20px; }
+  header.top p { font-size: 14px; }
+  header.top .meta { white-space: normal; }
+
+  .drop { padding: 28px 18px; }
+
+  .filebar { padding: 12px 14px; gap: 10px; }
+  .filebar > div:first-child { flex: 1 1 100%; min-width: 0; }
+  .filebar .name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .filebar audio { flex: 1 1 100%; }
+  .filebar .reset { margin-left: 0; flex: 1 1 100%; text-align: center; padding: 9px; }
+
+  .steps { grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 14px; }
+  .step { padding: 10px 12px; gap: 8px; }
+  .step .label { font-size: 13.5px; }
+
+  .actions { margin: -4px 0 14px; }
+
+  .status { flex-direction: column; gap: 8px; padding: 14px 16px; }
+  .status .flag { margin-left: 0; align-self: flex-start; }
+
+  .card { padding: 14px 14px; border-radius: 12px; }
+  .card .task { font-size: 15px; }
+  .quote { gap: 10px; }
+  .quote .play { width: 34px; height: 34px; }
+
+  details.transcript summary { flex-direction: column; gap: 2px; }
+  .turns { padding: 0 14px 10px; max-height: 360px; }
+  .turn { grid-template-columns: 48px 1fr; row-gap: 2px; }
   .turn .s { grid-column: 2; }
   .turn .x { grid-column: 2; }
+
+  /* таблиця метрик → картки */
+  .metrics { padding: 14px; }
+  .metrics table, .metrics tbody { display: block; }
+  .metrics tr { display: grid; grid-template-columns: 1fr auto; gap: 2px 10px; padding: 8px 0; border-top: 1px solid var(--line); }
+  .metrics td { display: block; border: 0; padding: 0; width: auto; }
+  .metrics td:first-child { grid-column: 1; font-weight: 550; color: var(--ink); }
+  .metrics td:nth-child(2) { grid-column: 1 / -1; grid-row: 2; color: var(--ink-2); font-size: 13px; }
+  .metrics td.num { grid-column: 2; grid-row: 1; text-align: right; }
+  .metrics td.num + td.num { grid-column: 2; grid-row: 3; }
+  .metrics tr.total td:first-child { color: var(--ink); }
+}
+
+/* дуже вузькі екрани — кроки в стовпчик */
+@media (max-width: 380px) {
+  .steps { grid-template-columns: 1fr; }
 }
