@@ -3,7 +3,7 @@
 Тестове для Codebridge, роль AI-First Product Builder. Бриф: «Recorded conversation to final commitments».
 
 - Демо: _[URL після деплою]_
-- Репозиторій: _[URL]_
+- Репозиторій: https://github.com/Vicdk13/commitments
 - Відео (до 3 хв): _[URL]_
 - Витрачений час: **_[N] годин_** (з них ~_[M]_ на сценарії й озвучку тестового набору)
 
