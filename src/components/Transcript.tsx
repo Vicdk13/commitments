@@ -80,7 +80,14 @@ export function Transcript({ transcript, annotations, speakerNames, currentTime,
                     <span className="tr-ann-k"><KindIcon kind={a.kind} /> {a.n} · {a.title}</span>
                     <span className="tr-ann-t">{a.text}</span>
                     <span className={`sum-play ${playing ? "on" : ""}`}>{playing ? "⏸" : "▶"} {fmtTime(a.quote.start)}</span>
-                    {a.meta && <span className="tr-ann-m">{a.meta}</span>}
+                    {(a.meta || a.flags.length > 0) && (
+                      <span className="tr-ann-m">
+                        {a.meta}
+                        {a.flags.map((f) => (
+                          <span key={f.kind} className="chip warn" title={f.note ?? undefined}>⚠ {f.label}{f.note ? ` — ${f.note}` : ""}</span>
+                        ))}
+                      </span>
+                    )}
                   </button>
                 );
               })}

@@ -211,7 +211,8 @@ button.link:disabled { color: var(--ink-3); cursor: default; }
 .tr-ann-k { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; white-space: nowrap; }
 .tr-ann-t { color: var(--ink); font-weight: 550; font-size: 14px; }
 .tr-ann.cancelled .tr-ann-t { text-decoration: line-through; color: var(--ink-2); }
-.tr-ann-m { grid-column: 2 / 4; font-size: 12.5px; opacity: .85; }
+.tr-ann-m { grid-column: 2 / 4; font-size: 12.5px; opacity: .95; display: flex; flex-wrap: wrap; gap: 4px 8px; align-items: center; }
+.tr-ann-m .chip { font-size: 11.5px; }
 
 /* ---------- summary ---------- */
 .sum { display: flex; flex-direction: column; gap: 12px; }
