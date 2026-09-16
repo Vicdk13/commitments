@@ -14,6 +14,9 @@ type Props = {
   currentTime: number;
   activeId: string | null;
   playingId: string | null;
+  liveId: string | null;     // рішення, цитата якого звучить зараз
+  playing: boolean;
+  follow: boolean;           // авто-прокрутка до репліки, що звучить
   stickyOffset?: number; // висота липкого файл-бару на вузьких екранах (UI-08)
   onSeek: (sec: number) => void;
   onPick: (a: Annotation) => void;
@@ -24,28 +27,51 @@ type Props = {
  * після репліки — картка «Прийнято / Скасовано / Не прийнято / Питання».
  * Поточна репліка підсвічується під час відтворення.
  */
-export function Transcript({ transcript, annotations, speakerNames, currentTime, activeId, playingId, stickyOffset = 80, onSeek, onPick }: Props) {
+export function Transcript({ transcript, annotations, speakerNames, currentTime, activeId, playingId, liveId, playing, follow, stickyOffset = 80, onSeek, onPick }: Props) {
   const map = byTurn(annotations);
   const speakers = Array.from(new Set(transcript.turns.map((t) => t.speaker)));
   const rows = useRef<Map<number, HTMLDivElement>>(new Map());
   const box = useRef<HTMLDivElement>(null);
+  const userScrolledAt = useRef(0);     // коли користувач сам крутив контейнер
+  const programmatic = useRef(0);       // до цього часу події scroll — наші, не користувача
 
-  // UI-08: прокручуємо контейнер, якщо він скролиться; інакше — вікно з поправкою на sticky, без стрибка сторінки
+  const scrollToTurn = (idx: number, smooth = true) => {
+    const c = box.current, el = rows.current.get(idx);
+    if (!c || !el) return;
+    programmatic.current = Date.now() + 800;
+    if (c.scrollHeight > c.clientHeight + 4) {
+      c.scrollTo({ top: el.offsetTop - (c.clientHeight - el.offsetHeight) / 2, behavior: smooth ? "smooth" : "auto" });
+    } else {
+      const y = el.getBoundingClientRect().top + window.scrollY - stickyOffset - 16;
+      window.scrollTo({ top: y, behavior: smooth ? "smooth" : "auto" });
+    }
+  };
+
+  // авто-прокрутка до репліки, що звучить — якщо користувач не крутив останні 3 с
+  const currentTurn = transcript.turns.find((t) => currentTime >= t.start && currentTime < t.end)?.index ?? -1;
+  useEffect(() => {
+    if (!follow || !playing || currentTurn < 0) return;
+    if (Date.now() - userScrolledAt.current < 3000) return;
+    scrollToTurn(currentTurn);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentTurn, follow, playing]);
+
+  // UI-08: клік по пункту — прокрутка до репліки (контейнер або вікно, без стрибка сторінки)
   const active = annotations.find((a) => a.id === activeId) ?? null;
   useEffect(() => {
     if (!active) return;
-    const c = box.current, el = rows.current.get(active.quote.turnIndex);
-    if (!c || !el) return;
-    if (c.scrollHeight > c.clientHeight + 4) {
-      c.scrollTo({ top: el.offsetTop - (c.clientHeight - el.offsetHeight) / 2, behavior: "smooth" });
-    } else {
-      const y = el.getBoundingClientRect().top + window.scrollY - stickyOffset - 16;
-      window.scrollTo({ top: y, behavior: "smooth" });
-    }
-  }, [active, stickyOffset]);
+    userScrolledAt.current = 0;
+    scrollToTurn(active.quote.turnIndex);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [active]);
+
+  const onScroll = () => {
+    if (Date.now() < programmatic.current) return;
+    userScrolledAt.current = Date.now();
+  };
 
   return (
-    <div className="tr" ref={box}>
+    <div className="tr" ref={box} onScroll={onScroll} onWheel={onScroll} onTouchMove={onScroll}>
       {transcript.turns.map((t) => {
         const anns = map.get(t.index) ?? [];
         const playing = currentTime >= t.start && currentTime < t.end;
@@ -54,7 +80,7 @@ export function Transcript({ transcript, annotations, speakerNames, currentTime,
         return (
           <div
             key={t.index}
-            className={`tr-turn sp${spIdx} ${playing ? "playing" : ""} ${anns.length ? "has" : ""}`}
+            className={`tr-turn sp${spIdx} ${playing ? "playing" : ""} ${anns.length ? "has" : ""} ${anns.some((a) => a.id === liveId) ? "live" : ""}`}
             ref={(el) => { if (el) rows.current.set(t.index, el); }}
           >
             <button className="tr-time" onClick={() => onSeek(t.start)} title="Перейти сюди">{fmtTime(t.start)}</button>
@@ -75,7 +101,7 @@ export function Transcript({ transcript, annotations, speakerNames, currentTime,
               {anns.map((a) => {
                 const playing = playingId === a.id;
                 return (
-                  <button key={a.id} className={`tr-ann ${a.kind} ${activeId === a.id ? "active" : ""} ${playing ? "playing" : ""}`} onClick={() => onPick(a)}
+                  <button key={a.id} className={`tr-ann ${a.kind} ${activeId === a.id ? "active" : ""} ${playing ? "playing" : ""} ${liveId === a.id ? "live" : ""}`} onClick={() => onPick(a)}
                     aria-label={`${a.n}. ${a.title}: ${a.text}. ${playing ? "Пауза" : "Прослухати цитату"}`}>
                     <span className="tr-ann-k"><KindIcon kind={a.kind} /> {a.n} · {a.title}</span>
                     <span className="tr-ann-t">{a.text}</span>

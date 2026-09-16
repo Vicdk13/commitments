@@ -12,12 +12,13 @@ type Props = {
   turns: Turn[];
   activeId: string | null;
   playingId: string | null;
+  liveId: string | null;
   onPick: (a: Annotation) => void;
   onSeek: (sec: number) => void;
 };
 
 /** Компактний підсумок збоку: статус + чотири групи, клік — програти цитату і показати місце в розшифровці. */
-export function Summary({ extraction: e, annotations, turns, activeId, playingId, onPick, onSeek }: Props) {
+export function Summary({ extraction: e, annotations, turns, activeId, playingId, liveId, onPick, onSeek }: Props) {
   const groups: { kind: Annotation["kind"]; title: string; empty: string }[] = [
     { kind: "accepted", title: "Прийнято", empty: "Жодної прийнятої задачі" },
     { kind: "cancelled", title: "Скасовано", empty: "Нічого не скасовували" },
@@ -51,7 +52,8 @@ export function Summary({ extraction: e, annotations, turns, activeId, playingId
                   key={a.id}
                   role="button"
                   tabIndex={0}
-                  className={`sum-item ${a.kind} ${activeId === a.id ? "active" : ""} ${playing ? "playing" : ""}`}
+                  className={`sum-item ${a.kind} ${activeId === a.id ? "active" : ""} ${playing ? "playing" : ""} ${liveId === a.id ? "live" : ""}`}
+                  data-ann={a.id}
                   style={{ animationDelay: `${i * 60}ms` }}
                   onClick={() => onPick(a)}
                   onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onPick(a); } }}

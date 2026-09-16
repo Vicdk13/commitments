@@ -95,6 +95,17 @@ button.link:disabled { color: var(--ink-3); cursor: default; }
 .step .sub { color: var(--ink-3); font-size: 13px; font-variant-numeric: tabular-nums; }
 @keyframes pulse { 0%,100% { opacity: 1 } 50% { opacity: .35 } }
 
+/* ---------- прогрес обробки ---------- */
+.progress { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 18px; margin-bottom: 14px; }
+.progress-head { display: flex; justify-content: space-between; gap: 12px; font-size: 13.5px; margin-bottom: 10px; }
+.progress-stage b { font-weight: 700; color: var(--accent); margin-right: 6px; font-family: var(--mono); font-size: 12px; }
+.progress-stage small, .progress-time small { color: var(--ink-3); }
+.progress-time { font-variant-numeric: tabular-nums; color: var(--ink-2); white-space: nowrap; }
+.progress-bar { height: 6px; border-radius: 3px; background: var(--line-2); overflow: hidden; }
+.progress-bar span { display: block; height: 100%; border-radius: 3px; background: linear-gradient(90deg, var(--accent), #6f9bff); transition: width .6s ease; position: relative; }
+.progress-bar span::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, transparent, rgba(255,255,255,.45), transparent); background-size: 200% 100%; animation: shimmer 1.4s infinite; }
+.progress-phrase { margin-top: 10px; color: var(--ink-2); font-size: 14px; animation: rise .35s ease both; min-height: 21px; }
+
 .error { background: var(--cancel-bg); color: var(--cancel); border-radius: var(--radius); padding: 14px 18px; margin-bottom: 14px; }
 .error .reset { border-color: var(--cancel-line); color: var(--cancel); }
 .fallback { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 12px 14px; margin-bottom: 14px; }
@@ -116,6 +127,8 @@ button.link:disabled { color: var(--ink-3); cursor: default; }
 .panel { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
 .panel-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding: 12px 18px; border-bottom: 1px solid var(--line-2); }
 .panel-head span { color: var(--ink-3); font-size: 12.5px; }
+.panel-head .follow { margin-left: auto; display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; color: var(--ink-2); white-space: nowrap; cursor: pointer; }
+.panel-head .follow input { accent-color: var(--accent); margin: 0; }
 
 /* ---------- skeleton ---------- */
 .sk-line { height: 12px; border-radius: 6px; background: linear-gradient(90deg, #ececea 25%, #f6f6f3 50%, #ececea 75%); background-size: 200% 100%; animation: shimmer 1.2s infinite; margin-bottom: 10px; }
@@ -186,6 +199,8 @@ button.link:disabled { color: var(--ink-3); cursor: default; }
 .tr { padding: 6px 0 10px; max-height: 70vh; overflow: auto; }
 .tr-turn { display: grid; grid-template-columns: 56px 1fr; gap: 8px; padding: 8px 18px; border-left: 3px solid transparent; transition: background .2s; }
 .tr-turn.playing { background: #fbfbf7; border-left-color: var(--ink); }
+.tr-turn.live { background: #fffdf3; }
+.tr-ann.live { box-shadow: 0 0 0 2px currentColor, 0 6px 18px rgba(0,0,0,.08); transform: translateX(2px); transition: box-shadow .2s, transform .2s; }
 .tr-turn.sp0 .tr-sp { color: var(--sp0); } .tr-turn.sp1 .tr-sp { color: var(--sp1); }
 .tr-time { background: none; border: none; padding: 2px 0; text-align: left; color: var(--ink-3); font-family: var(--mono); font-size: 12px; font-variant-numeric: tabular-nums; }
 .tr-time:hover { color: var(--accent); }
@@ -242,6 +257,10 @@ button.link:disabled { color: var(--ink-3); cursor: default; }
 .sum-item { cursor: pointer; }
 .sum-item:hover { background: var(--bg); }
 .sum-item.active { background: #f2f7ff; }
+.sum-item.live { background: #fff7dc; box-shadow: inset 3px 0 0 var(--warn); transition: background .2s; }
+.sum-item.live.accepted { box-shadow: inset 3px 0 0 var(--ok); background: #eef8f1; }
+.sum-item.live.cancelled { box-shadow: inset 3px 0 0 var(--cancel); background: #fdf0ef; }
+.sum-item.live.proposed { box-shadow: inset 3px 0 0 var(--prop); background: #f0f0f3; }
 .sum-row { display: flex; gap: 8px; align-items: baseline; }
 .sum-n { flex: none; font: 700 11px var(--mono); min-width: 14px; }
 .sum-item.accepted .sum-n { color: var(--ok); } .sum-item.cancelled .sum-n { color: var(--cancel); }

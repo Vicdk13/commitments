@@ -10,6 +10,7 @@ import { Timeline } from "@/components/Timeline";
 import { Transcript } from "@/components/Transcript";
 import { Summary } from "@/components/Summary";
 import { Metrics } from "@/components/Metrics";
+import { Progress } from "@/components/Progress";
 
 type Stage = "idle" | "transcribing" | "extracting" | "done" | "error";
 
@@ -73,6 +74,32 @@ export default function Page() {
     return m;
   }, [activeRun, transcript]);
   const playingId = playing ? activeId : null;
+  const [follow, setFollow] = useState(true);
+
+  // рішення, цитата якого звучить зараз (з невеликим хвостом, щоб підсвітка не блимала)
+  const liveId = useMemo(() => {
+    if (!playing) return null;
+    const hit = annotations.find((a) => currentTime >= a.quote.start - 0.1 && currentTime <= a.quote.end + 1.2);
+    return hit?.id ?? null;
+  }, [annotations, currentTime, playing]);
+
+  // підсумок прокручується до пункту, що звучить (контейнер .side на десктопі; вікно не чіпаємо)
+  const sideRef = useRef<HTMLElement>(null);
+  const sideUserScrolledAt = useRef(0);
+  const sideProgrammatic = useRef(0);
+  useEffect(() => {
+    if (!liveId || !follow) return;
+    const side = sideRef.current;
+    if (!side) return;
+    if (Date.now() - sideUserScrolledAt.current < 3000) return;
+    const el = side.querySelector<HTMLElement>(`[data-ann="${liveId}"]`);
+    if (!el) return;
+    if (side.scrollHeight > side.clientHeight + 4) {
+      sideProgrammatic.current = Date.now() + 800;
+      side.scrollTo({ top: el.offsetTop - side.clientHeight / 2 + el.offsetHeight / 2, behavior: "smooth" });
+    }
+  }, [liveId, follow]);
+  const onSideScroll = () => { if (Date.now() >= sideProgrammatic.current) sideUserScrolledAt.current = Date.now(); };
 
   // ---------- курсор: rAF, поки грає ----------
   useEffect(() => {
@@ -311,14 +338,13 @@ export default function Page() {
         </div>
       )}
 
-      {file && !done && (
+      {file && (stage === "transcribing" || stage === "extracting") && (
+        <Progress stage={stage} elapsed={elapsed} durationSec={duration || transcript?.durationSec || 120} modelLabel={spec.label} sttMs={transcribeMetrics?.ms} />
+      )}
+      {file && stage === "error" && !done && (
         <div className="steps">
-          <Step state={stage === "transcribing" ? "running" : transcript ? "done" : stage === "error" && !transcript ? "error" : "idle"}
-            label="Розпізнавання"
-            sub={transcribeMetrics ? `${(transcribeMetrics.ms / 1000).toFixed(1)} с` : stage === "transcribing" ? `ElevenLabs Scribe · ${elapsed.toFixed(0)} с` : ""} />
-          <Step state={stage === "extracting" ? "running" : activeRun ? "done" : stage === "error" && transcript ? "error" : "idle"}
-            label="Аналіз домовленостей"
-            sub={stage === "extracting" ? `${spec.label} читає розшифровку · ${elapsed.toFixed(0)} с · зазвичай 10–25 с` : activeRun ? `${activeRun.modelLabel} · ${(activeRun.metrics.ms / 1000).toFixed(1)} с` : ""} />
+          <Step state={transcript ? "done" : "error"} label="Розпізнавання" sub={transcribeMetrics ? `${(transcribeMetrics.ms / 1000).toFixed(1)} с` : ""} />
+          <Step state={activeRun ? "done" : "error"} label="Аналіз домовленостей" sub="" />
         </div>
       )}
 
@@ -351,13 +377,15 @@ export default function Page() {
               <div className="panel-head">
                 <h2>Розмова</h2>
                 <span>{transcript.turns.length} реплік · клік по часу — перемотка{activeRun ? " · рішення позначені там, де прозвучали" : ""}</span>
+                <label className="follow"><input type="checkbox" checked={follow} onChange={(e) => setFollow(e.target.checked)} /> слідкувати</label>
               </div>
               <Transcript transcript={transcript} annotations={annotations} speakerNames={speakerNames}
-                currentTime={currentTime} activeId={activeId} playingId={playingId} stickyOffset={STICKY_OFFSET} onSeek={seek} onPick={pick} />
+                currentTime={currentTime} activeId={activeId} playingId={playingId} liveId={liveId} playing={playing} follow={follow}
+                stickyOffset={STICKY_OFFSET} onSeek={seek} onPick={pick} />
             </section>
           </div>
 
-          <aside className="side">
+          <aside className="side" ref={sideRef} onScroll={onSideScroll} onWheel={onSideScroll} onTouchMove={onSideScroll}>
             {activeRun ? (
               <>
                 <div className="side-head">
@@ -391,7 +419,7 @@ export default function Page() {
                   </div>
                 )}
                 <Summary extraction={activeRun.extraction} annotations={annotations} turns={transcript.turns}
-                  activeId={activeId} playingId={playingId} onPick={pick} onSeek={seek} />
+                  activeId={activeId} playingId={playingId} liveId={liveId} onPick={pick} onSeek={seek} />
               </>
             ) : (
               <div className="side-wait">
