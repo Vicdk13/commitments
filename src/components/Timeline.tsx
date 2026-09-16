@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { Transcript } from "@/lib/types";
 import type { Annotation } from "@/lib/annotations";
 import { fmtTime } from "@/lib/format";
@@ -20,11 +20,35 @@ type Props = {
  * Доріжка запису: дві смуги (по спікеру), репліки як сегменти,
  * над ними — маркери рішень; курсор відтворення; клік по смузі — перемотка.
  */
+type Cluster = { key: string; start: number; items: Annotation[] };
+
 export function Timeline({ transcript, annotations, speakerNames, currentTime, activeId, onSeek, onPick }: Props) {
   const ref = useRef<HTMLDivElement>(null);
-  const [hover, setHover] = useState<Annotation | null>(null);
+  const [hover, setHover] = useState<Cluster | null>(null);
+  const [width, setWidth] = useState(800);
   const dur = Math.max(transcript.durationSec, 1);
   const pct = (s: number) => `${Math.min(100, Math.max(0, (s / dur) * 100))}%`;
+
+  // UI-16: ширина доріжки → кластеризація маркерів, ближчих за 20px
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const ro = new ResizeObserver((entries) => setWidth(entries[0].contentRect.width));
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+  const pxPerSec = width / dur;
+  const clusters: Cluster[] = [];
+  for (const a of annotations) {
+    const last = clusters[clusters.length - 1];
+    if (last && (a.quote.start - last.items[last.items.length - 1].quote.start) * pxPerSec < 20) last.items.push(a);
+    else clusters.push({ key: a.id, start: a.quote.start, items: [a] });
+  }
+  const pickCluster = (c: Cluster) => {
+    if (c.items.length === 1) { onPick(c.items[0]); return; }
+    const idx = c.items.findIndex((a) => a.id === activeId);
+    onPick(c.items[(idx + 1) % c.items.length]); // по колу
+  };
 
   const speakers = Array.from(new Set(transcript.turns.map((t) => t.speaker)));
   const lane = (sp: string) => speakers.indexOf(sp);
@@ -48,6 +72,7 @@ export function Timeline({ transcript, annotations, speakerNames, currentTime, a
           {speakers.map((sp, i) => (
             <span key={sp} className={`tl-sp sp${i}`}><i />{speakerNames.get(sp) ?? sp}</span>
           ))}
+          <span className="tl-keys" title={"Space — грати/пауза\n← → — ±5 с, Shift — ±15 с\nJ / K — попереднє / наступне рішення\nEsc — пауза"}>клавіші ?</span>
         </div>
         <div className="tl-legend">
           <span className="tl-k accepted"><KindIcon kind="accepted" />прийнято</span>
@@ -59,30 +84,50 @@ export function Timeline({ transcript, annotations, speakerNames, currentTime, a
 
       {/* маркери рішень */}
       <div className="tl-markers">
-        {annotations.map((a) => (
-          <button
-            key={a.id}
-            className={`tl-m ${a.kind} ${activeId === a.id ? "active" : ""}`}
-            style={{ left: pct(a.quote.start) }}
-            onClick={() => onPick(a)}
-            onMouseEnter={() => setHover(a)}
-            onMouseLeave={() => setHover(null)}
-            aria-label={`${a.n}. ${a.title}: ${a.text}`}
-          >
-            <span className="tl-m-dot">{a.n}</span>
-          </button>
-        ))}
+        {clusters.map((c) => {
+          const single = c.items.length === 1 ? c.items[0] : null;
+          const isActive = c.items.some((a) => a.id === activeId);
+          return (
+            <button
+              key={c.key}
+              className={`tl-m ${single ? single.kind : "cluster"} ${isActive ? "active" : ""}`}
+              style={{ left: pct(c.start) }}
+              onClick={() => pickCluster(c)}
+              onMouseEnter={() => setHover(c)}
+              onMouseLeave={() => setHover(null)}
+              aria-label={single ? `${single.n}. ${single.title}: ${single.text}` : `${c.items.length} рішення поруч: ${c.items.map((a) => `${a.n}. ${a.title}`).join("; ")}`}
+            >
+              <span className="tl-m-dot">{single ? single.n : c.items.length}</span>
+            </button>
+          );
+        })}
         {hover && (
-          <div className={`tl-tip ${hover.kind} ${edgeClass(hover.quote.start / dur, 0.15)}`} style={{ left: pct(hover.quote.start) }}>
-            <b><KindIcon kind={hover.kind} /> #{hover.n} {hover.title}</b> · {fmtTime(hover.quote.start)}
-            <div>{hover.text}</div>
-            {hover.meta && <small>{hover.meta}</small>}
+          <div className={`tl-tip ${hover.items.length === 1 ? hover.items[0].kind : "cluster"} ${edgeClass(hover.start / dur, 0.15)}`} style={{ left: pct(hover.start) }}>
+            {hover.items.map((a) => (
+              <div key={a.id} className={`tl-tip-row ${a.kind}`}>
+                <b><KindIcon kind={a.kind} /> #{a.n} {a.title}</b> · {fmtTime(a.quote.start)}
+                <div>{a.text}</div>
+                {a.meta && <small>{a.meta}</small>}
+              </div>
+            ))}
+            {hover.items.length > 1 && <small className="tl-tip-hint">клік — наступне по колу</small>}
           </div>
         )}
       </div>
 
       {/* смуги реплік */}
-      <div className="tl-track" ref={ref} onClick={seekAt}>
+      <div
+        className="tl-track"
+        ref={ref}
+        onClick={seekAt}
+        tabIndex={0}
+        role="slider"
+        aria-label="Позиція відтворення"
+        aria-valuemin={0}
+        aria-valuemax={Math.round(dur)}
+        aria-valuenow={Math.round(currentTime)}
+        aria-valuetext={fmtTime(currentTime)}
+      >
         {ticks.map((t) => (
           <span key={t} className="tl-tick" style={{ left: pct(t) }}><em>{fmtTime(t)}</em></span>
         ))}

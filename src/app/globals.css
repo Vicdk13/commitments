@@ -68,7 +68,13 @@ button.link:disabled { color: var(--ink-3); cursor: default; }
 .drop .cta { display: inline-block; padding: 10px 18px; border-radius: 10px; background: var(--ink); color: #fff; font-weight: 550; }
 .drop .hint { margin-top: 12px; color: var(--ink-3); font-size: 13px; }
 .drop .samples { margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 13px; color: var(--ink-2); }
-.drop .samples button { background: none; border: none; color: var(--accent); padding: 0 6px; }
+.samples-h { margin-bottom: 10px; }
+.sample-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; text-align: left; }
+.sample-card { display: flex; flex-direction: column; align-items: flex-start; text-align: left; gap: 4px; background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; color: var(--ink); transition: border-color .15s; }
+.sample-card:hover { border-color: var(--ink-2); }
+.sample-t { font-weight: 600; font-size: 13.5px; }
+.sample-t em { font-style: normal; color: var(--ink-3); font-weight: 400; font-family: var(--mono); font-size: 12px; }
+.sample-d { font-size: 12.5px; color: var(--ink-2); line-height: 1.4; }
 
 /* ---------- file bar / steps ---------- */
 .filebar { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 12px 16px; margin-bottom: 12px; }
@@ -148,6 +154,11 @@ button.link:disabled { color: var(--ink-3); cursor: default; }
 .tl-tip.edge-r { transform: translateX(-100%); margin-left: 12px; }
 .tl-tip.accepted b { color: #8fe0b3; } .tl-tip.cancelled b { color: #ffb3ad; } .tl-tip.proposed b { color: #cfd3dd; } .tl-tip.question b { color: #ffd98a; }
 .tl-tip small { display: block; opacity: .7; margin-top: 2px; }
+.tl-tip-row + .tl-tip-row { margin-top: 8px; padding-top: 8px; border-top: 1px solid rgba(255,255,255,.15); }
+.tl-tip-row.accepted b { color: #8fe0b3; } .tl-tip-row.cancelled b { color: #ffb3ad; } .tl-tip-row.proposed b { color: #cfd3dd; } .tl-tip-row.question b { color: #ffd98a; }
+.tl-tip-hint { margin-top: 6px; opacity: .55; }
+.tl-m.cluster { color: var(--ink); } .tl-m.cluster .tl-m-dot { background: var(--ink); }
+.tl-keys { margin-left: auto; color: var(--ink-3); font-size: 12px; cursor: help; border-bottom: 1px dotted var(--ink-3); }
 
 .tl-track { position: relative; height: 84px; border-radius: 10px; background: var(--bg); border: 1px solid var(--line-2); cursor: pointer; overflow: visible; }
 .tl-lane { position: absolute; left: 0; right: 0; height: 30px; }
@@ -204,6 +215,9 @@ button.link:disabled { color: var(--ink-3); cursor: default; }
 
 /* ---------- summary ---------- */
 .sum { display: flex; flex-direction: column; gap: 12px; }
+.runs-switch { display: flex; gap: 4px; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 3px; }
+.runs-switch button { flex: 1; background: none; border: none; border-radius: 7px; padding: 5px 8px; font-size: 12.5px; color: var(--ink-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.runs-switch button.on { background: var(--ink); color: #fff; }
 .sum-status { border-radius: var(--radius); padding: 12px 14px; font-size: 13.5px; }
 .sum-status b { display: block; font-weight: 650; margin-bottom: 2px; }
 .sum-status p { margin: 0; opacity: .85; }
@@ -269,6 +283,7 @@ button.link:disabled { color: var(--ink-3); cursor: default; }
   .layout { grid-template-columns: 1fr; }
   .main, .side { display: contents; }
   .side-head { order: 1; }
+  .runs-switch { order: 2; }
   .sum, .side-wait { order: 2; }
   .tl { order: 3; }
   .panel { order: 4; }
@@ -300,6 +315,8 @@ button.link:disabled { color: var(--ink-3); cursor: default; }
   .step { padding: 10px 12px; gap: 8px; }
   .step .label { font-size: 13.5px; }
   .tl { padding: 12px 12px 18px; }
+  .sample-cards { grid-template-columns: 1fr; }
+  .tl-keys { display: none; }
   .tl-tip { max-width: 240px; }
   .tr { max-height: none; }
   .tr-turn { grid-template-columns: 1fr; gap: 2px; padding: 8px 12px; }

@@ -14,9 +14,9 @@ import { Metrics } from "@/components/Metrics";
 type Stage = "idle" | "transcribing" | "extracting" | "done" | "error";
 
 const SAMPLES = [
-  { file: "01-main.mp3", label: "Планування релізу (3 хв)" },
-  { file: "02-variant.mp3", label: "Наступний день, із сарказмом (2,5 хв)" },
-  { file: "03-no-conclusion.mp3", label: "Без домовленостей, обірваний (1 хв)" },
+  { file: "01-main.mp3", title: "Планування релізу", dur: "3:00", desc: "усі 5 ситуацій: відхилена пропозиція, прийнята задача, змінений дедлайн, скасоване, задача без власника" },
+  { file: "02-variant.mp3", title: "Наступний день", dur: "2:37", desc: "одна домовленість змінена + сарказм, який не має стати зобов'язанням" },
+  { file: "03-no-conclusion.mp3", title: "Без домовленостей", dur: "1:06", desc: "обірваний запис — апка має відмовитись робити висновок" },
 ];
 
 const EFFORTS: { id: Effort; label: string }[] = [
@@ -118,6 +118,47 @@ export default function Page() {
     el.currentTime = Math.max(0, sec);
     void el.play();
   }, []);
+
+  // UI-15: клавіатура
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      const a = audioRef.current;
+      if (!a || !transcript) return;
+      const t = e.target instanceof HTMLElement ? e.target : null;
+      if (t && (t.tagName === "INPUT" || t.tagName === "SELECT" || t.tagName === "TEXTAREA")) return;
+      if (e.ctrlKey || e.metaKey || e.altKey) return;
+      const onBodyOrTrack = !t || t === document.body || t.classList.contains("tl-track");
+      const step = e.shiftKey ? 15 : 5;
+      switch (e.key) {
+        case " ":
+          if (!onBodyOrTrack) return;
+          e.preventDefault();
+          stopAt.current = null;
+          if (a.paused) void a.play(); else a.pause();
+          break;
+        case "ArrowLeft":
+          if (!onBodyOrTrack) return;
+          e.preventDefault(); stopAt.current = null; a.currentTime = Math.max(0, a.currentTime - step); break;
+        case "ArrowRight":
+          if (!onBodyOrTrack) return;
+          e.preventDefault(); stopAt.current = null; a.currentTime = Math.min(a.duration || 0, a.currentTime + step); break;
+        case "j": case "J": case "k": case "K": {
+          if (annotations.length === 0) return;
+          e.preventDefault();
+          const now = a.currentTime;
+          const next = e.key.toLowerCase() === "k"
+            ? annotations.find((x) => x.quote.start > now + 0.5)
+            : [...annotations].reverse().find((x) => x.quote.start < now - 0.5);
+          if (next) pick(next);
+          break;
+        }
+        case "Escape":
+          a.pause(); stopAt.current = null; setActiveId(null); break;
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [transcript, annotations, pick]);
 
   // ---------- пайплайн ----------
   const reset = () => {
@@ -233,10 +274,15 @@ export default function Page() {
           <span className="cta">Вибрати аудіофайл</span>
           <div className="hint">або перетягніть сюди · mp3, m4a, wav, ogg · до 3 хвилин</div>
           <div className="samples">
-            Немає запису під рукою? Спробуйте тестовий — він обробиться так само, як ваш:<br />
-            {SAMPLES.map((s) => (
-              <button key={s.file} type="button" onClick={(e) => { e.preventDefault(); void loadSample(s.file); }}>{s.label}</button>
-            ))}
+            <div className="samples-h">Немає запису під рукою? Спробуйте тестовий — він обробиться так само, як ваш:</div>
+            <div className="sample-cards">
+              {SAMPLES.map((s) => (
+                <button key={s.file} type="button" className="sample-card" onClick={(e) => { e.preventDefault(); void loadSample(s.file); }}>
+                  <span className="sample-t">{s.title} <em>· {s.dur}</em></span>
+                  <span className="sample-d">{s.desc}</span>
+                </button>
+              ))}
+            </div>
           </div>
         </label>
       )}
@@ -316,6 +362,26 @@ export default function Page() {
                     <button onClick={copyJson} disabled={copyJsonState !== "idle"}>{copyLabel(copyJsonState, "JSON")}</button>
                   </div>
                 </div>
+                {runs.length > 1 && (
+                  <div className="runs-switch" role="tablist" aria-label="Прогони аналізу">
+                    {runs.map((r, i) => {
+                      const e = r.extraction;
+                      const counts = [
+                        e.commitments.filter((c) => c.status === "accepted").length,
+                        e.commitments.filter((c) => c.status === "cancelled").length,
+                        e.commitments.filter((c) => c.status === "proposed_not_accepted").length,
+                        e.openQuestions.length,
+                      ].join(" · ");
+                      return (
+                        <button key={r.id} role="tab" aria-selected={r.id === activeRunId} className={r.id === activeRunId ? "on" : ""}
+                          title={`прийнято · скасовано · не прийнято · питання: ${counts}`}
+                          onClick={() => { setActiveRunId(r.id); setActiveId(null); }}>
+                          #{i + 1} {r.modelLabel.replace("Claude ", "")} · {r.effort}
+                        </button>
+                      );
+                    })}
+                  </div>
+                )}
                 <Summary extraction={activeRun.extraction} annotations={annotations} turns={transcript.turns}
                   activeId={activeId} playingId={playingId} onPick={pick} onSeek={seek} />
               </>
