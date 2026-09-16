@@ -38,7 +38,7 @@ header.top h1 { font-size: 22px; font-weight: 650; letter-spacing: -0.01em; marg
 header.top p { margin: 4px 0 0; color: var(--ink-2); max-width: 760px; }
 header.top .meta { color: var(--ink-3); font-size: 13px; white-space: nowrap; }
 .has-result header.top p { display: none; }
-.has-result header.top { margin-bottom: 14px; }
+.has-result header.top { margin-bottom: 10px; }
 
 /* ---------- controls ---------- */
 .controls {
