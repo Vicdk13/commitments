@@ -1,0 +1,158 @@
+{
+  "extraction": {
+    "status": "no_commitments",
+    "statusReason": "Розмова складається виключно з припущень і пропозицій («можна було б», «я б подивився», «треба подумати»); жодна з них не була явно прийнята обома, а запис обривається на півслові.",
+    "recordingTruncated": true,
+    "speakers": [
+      {
+        "label": "speaker_0",
+        "name": null,
+        "descriptor": "чоловік, ініціює обговорення сайту"
+      },
+      {
+        "label": "speaker_1",
+        "name": null,
+        "descriptor": "жінка, пропонує ідеї щодо сайту"
+      }
+    ],
+    "commitments": [
+      {
+        "id": "c1",
+        "task": "Переробити головну сторінку сайту",
+        "status": "proposed_not_accepted",
+        "owner": null,
+        "ownerNote": "Голос 2 сама сумнівається, чи є бюджет і чи хтось цим займатиметься; виконавця не визначали",
+        "deadline": {
+          "text": null,
+          "resolvable": true,
+          "note": null
+        },
+        "history": "Пропозицію озвучено (0:11), далі вирішили відкласти: «тоді хай поки повисить» (0:38)",
+        "confidence": "high",
+        "quote": {
+          "text": "Добре, тоді хай поки повисить.",
+          "speaker": "speaker_1",
+          "start": 38.119,
+          "end": 39.839,
+          "turnIndex": 9
+        }
+      },
+      {
+        "id": "c2",
+        "task": "Подивитися статистику відвідувань головної сторінки",
+        "status": "proposed_not_accepted",
+        "owner": null,
+        "ownerNote": "Голос 1 висловив це як припущення («я б спочатку подивився»), але одразу з'ясувалося, що невідомо, у кого доступ; ніхто задачу не взяв",
+        "deadline": {
+          "text": null,
+          "resolvable": true,
+          "note": null
+        },
+        "history": null,
+        "confidence": "high",
+        "quote": {
+          "text": "Не знаю. Треба спитати у Віки. У неї був доступ або в Олега. Я не пам'ятаю, у кого зараз.",
+          "speaker": "speaker_0",
+          "start": 32.18,
+          "end": 37.34,
+          "turnIndex": 8
+        }
+      },
+      {
+        "id": "c3",
+        "task": "Закрити блог",
+        "status": "proposed_not_accepted",
+        "owner": null,
+        "ownerNote": "Голос 1 озвучив як один із варіантів і сам запропонував відкласти рішення",
+        "deadline": {
+          "text": null,
+          "resolvable": true,
+          "note": null
+        },
+        "history": null,
+        "confidence": "high",
+        "quote": {
+          "text": "Я б його або закрив, або... Ну не знаю. Треба подумати.",
+          "speaker": "speaker_0",
+          "start": 46.759,
+          "end": 51.179,
+          "turnIndex": 10
+        }
+      },
+      {
+        "id": "c4",
+        "task": "Зібратися ще раз, коли буде більше інформації",
+        "status": "proposed_not_accepted",
+        "owner": null,
+        "ownerNote": "Голос 1 відповів невпевнено («може, я гляну календар»), і запис обривається без домовленості про час",
+        "deadline": {
+          "text": "наступного тижня",
+          "resolvable": false,
+          "note": "відносна дата; дата запису невідома"
+        },
+        "history": null,
+        "confidence": "medium",
+        "quote": {
+          "text": "Може, я гляну календар, хоча в мене там, здається, все зайнято до",
+          "speaker": "speaker_0",
+          "start": 57.719,
+          "end": 62.08,
+          "turnIndex": 12
+        }
+      }
+    ],
+    "openQuestions": [
+      {
+        "id": "q1",
+        "question": "У кого зараз доступ до статистики сайту — у Віки чи в Олега; хтось має це уточнити (Голос 1 казав, що треба спитати)",
+        "quote": {
+          "text": "Треба спитати у Віки. У неї був доступ або в Олега. Я не пам'ятаю, у кого зараз.",
+          "speaker": "speaker_0",
+          "start": 32.68,
+          "end": 37.34,
+          "turnIndex": 8
+        }
+      },
+      {
+        "id": "q2",
+        "question": "Чи є бюджет на переробку головної сторінки",
+        "quote": {
+          "text": "я не знаю, чи є на це бюджет і чи взагалі хтось буде цим займатись",
+          "speaker": "speaker_1",
+          "start": 16.959,
+          "end": 20.719,
+          "turnIndex": 5
+        }
+      },
+      {
+        "id": "q3",
+        "question": "Що робити з блогом — закривати чи розвивати; рішення відкладене «подумати»",
+        "quote": {
+          "text": "Давай подумаємо.",
+          "speaker": "speaker_1",
+          "start": 51.84,
+          "end": 53.079,
+          "turnIndex": 11
+        }
+      },
+      {
+        "id": "q4",
+        "question": "Чи і коли відбудеться наступна зустріч — Голос 1 має перевірити свій календар",
+        "quote": {
+          "text": "Може, я гляну календар",
+          "speaker": "speaker_0",
+          "start": 57.719,
+          "end": 59.659,
+          "turnIndex": 12
+        }
+      }
+    ]
+  },
+  "usage": {
+    "inputTokens": 7087,
+    "outputTokens": 1825
+  },
+  "model": "claude-opus-5",
+  "effort": "high",
+  "ms": 26081
+}

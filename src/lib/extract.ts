@@ -34,7 +34,11 @@ const ExtractionSchema = z.object({
   status: z.enum(["ok", "no_commitments", "cannot_conclude"]),
   status_reason: z.string().describe("Одне-два речення: чому такий статус"),
   recording_truncated: z.boolean().describe("true, якщо запис обривається на півслові або розмова явно не завершена"),
-  speakers: z.array(z.object({ label: z.string(), name: z.string().nullable() })),
+  speakers: z.array(z.object({
+    label: z.string(),
+    name: z.string().nullable().describe("Ім'я, якщо людина представилась або її назвали. Інакше null"),
+    descriptor: z.string().nullable().describe("Коротка характеристика ЛИШЕ з тексту розмови, 2–5 слів: роль («ставить задачі», «розробник») і стать, якщо однозначна з граматики («я зробила» → жінка). Не вгадуй. null, якщо нема на чому ґрунтуватись"),
+  })),
   commitments: z.array(CommitmentSchema),
   open_questions: z.array(OpenQuestionSchema),
 });
@@ -59,7 +63,7 @@ const SYSTEM = `Ти — асистент, який з розшифровки р
 7a. Не дублюй: якщо задача вже є в commitments (навіть без власника), не виноси «хто її робитиме» ще й як відкрите питання — достатньо owner_note.
 7b. Супровідні дії, що випливають зі скасування чи рішення («закрию гілку», «приберу з дошки», «занотую собі»), — не окремі задачі. Згадай їх у history або owner_note відповідного пункту.
 8. Кожен пункт має цитату: дослівна фраза з конкретної репліки, яка підтверджує САМЕ фінальний стан (для скасованої — фраза скасування; для зміненого дедлайну — фраза з останнім дедлайном).
-9. Імена спікерів бери лише з того, як вони представились у записі. Якщо хтось не представився — name = null, і в тексті використовуй його мітку (speaker_0 тощо).
+9. Імена спікерів бери лише з того, як вони представились у записі або як їх назвав співрозмовник. Якщо імені нема — name = null, а в descriptor дай коротку характеристику з тексту: роль у розмові (хто ставить задачі, хто виконує) і стать, якщо вона однозначно видна з граматики («я подивилась», «я зробив»). Без опори в тексті — descriptor = null. У примітках такого спікера називай «Голос 1» / «Голос 2» (за порядком появи), не speaker_0.
 10. Якщо в розмові немає жодної завершеної домовленості — status = no_commitments, commitments порожній, а обговорене винеси в open_questions або як proposed_not_accepted. Якщо розшифровка надто коротка, обірвана або незрозуміла, щоб робити висновки — status = cannot_conclude. Краще чесно сказати «не можу зробити висновок», ніж вигадати.
 11. Відкриті питання — те, що обговорювали, але не вирішили: хто, коли, чи робити взагалі.
 12. У полях history, owner_note, deadline_note, status_reason не згадуй номери реплік і слово «turn». Якщо треба вказати місце в розмові — пиши час у форматі m:ss, як у розшифровці, напр. «(0:12)».
@@ -158,7 +162,7 @@ function finalize(
       status: parsed.status,
       statusReason: parsed.status_reason,
       recordingTruncated: parsed.recording_truncated,
-      speakers: parsed.speakers,
+      speakers: parsed.speakers.map((s) => ({ label: s.label, name: s.name, descriptor: s.descriptor })),
       commitments,
       openQuestions,
     },

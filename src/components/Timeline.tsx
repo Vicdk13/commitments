@@ -70,7 +70,7 @@ export function Timeline({ transcript, annotations, speakerNames, currentTime, a
       <div className="tl-head">
         <div className="tl-legend">
           {speakers.map((sp, i) => (
-            <span key={sp} className={`tl-sp sp${i}`}><i />{speakerNames.get(sp) ?? sp}</span>
+            <span key={sp} className={`tl-sp sp${i}`}><i />{speakerNames.get(sp) ?? `Голос ${i + 1}`}</span>
           ))}
           <span className="tl-keys" title={"Space — грати/пауза\n← → — ±5 с, Shift — ±15 с\nJ / K — попереднє / наступне рішення\nEsc — пауза"}>клавіші ?</span>
         </div>
@@ -141,7 +141,7 @@ export function Timeline({ transcript, annotations, speakerNames, currentTime, a
                   key={t.index}
                   className={`tl-seg ${has ? "has" : ""} ${playing ? "playing" : ""}`}
                   style={{ left: pct(t.start), width: `calc(${pct(t.end - t.start)} - 1px)` }}
-                  title={`${speakerNames.get(sp) ?? sp} · ${fmtTime(t.start)}`}
+                  title={`${speakerNames.get(sp) ?? `Голос ${i + 1}`} · ${fmtTime(t.start)}`}
                 />
               );
             })}

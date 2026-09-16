@@ -56,7 +56,7 @@ export type Extraction = {
   status: ExtractionStatus;
   statusReason: string;
   recordingTruncated: boolean;
-  speakers: { label: string; name: string | null }[];
+  speakers: { label: string; name: string | null; descriptor?: string | null }[];
   commitments: Commitment[];
   openQuestions: OpenQuestion[];
 };

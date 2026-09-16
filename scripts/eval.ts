@@ -28,6 +28,8 @@ type Expected = {
   statusAlt?: Extraction["status"];
   recordingTruncated: boolean;
   speakers: string[];
+  speakersNoNames?: boolean;            // усі name мають бути null (запис без представлень)
+  descriptorsMustNotContain?: string[]; // характеристики не мають містити вигаданих імен
   must_include: Check[];
   must_include_questions: { id: string; keywords: string[] }[];
   must_exclude: Check[];
@@ -95,6 +97,14 @@ async function main() {
     results.push([e.recordingTruncated === exp.recordingTruncated, `recordingTruncated = ${e.recordingTruncated} (очікувано ${exp.recordingTruncated})`]);
     const names = e.speakers.map((s) => s.name);
     results.push([exp.speakers.every((n) => names.includes(n)), `спікери: ${names.join(", ")} (очікувано ${exp.speakers.join(", ")})`]);
+    if (exp.speakersNoNames) {
+      const descs = e.speakers.map((s) => s.descriptor ?? "—");
+      results.push([names.every((n) => n === null), `без імен: name = ${names.join(", ")}; descriptor = ${descs.join(" | ")}`]);
+      if (exp.descriptorsMustNotContain) {
+        const bad = exp.descriptorsMustNotContain.filter((w) => descs.some((d) => d.toLowerCase().includes(w.toLowerCase())));
+        results.push([bad.length === 0, `характеристики без вигаданих імен${bad.length ? ` → Є: ${bad.join(", ")}` : ""}`]);
+      }
+    }
 
     // включення
     for (const chk of exp.must_include) {

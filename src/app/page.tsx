@@ -17,6 +17,7 @@ const SAMPLES = [
   { file: "01-main.mp3", title: "Планування релізу", dur: "3:00", desc: "усі 5 ситуацій: відхилена пропозиція, прийнята задача, змінений дедлайн, скасоване, задача без власника" },
   { file: "02-variant.mp3", title: "Наступний день", dur: "2:37", desc: "одна домовленість змінена + сарказм, який не має стати зобов'язанням" },
   { file: "03-no-conclusion.mp3", title: "Без домовленостей", dur: "1:06", desc: "обірваний запис — апка має відмовитись робити висновок" },
+  { file: "04-no-names.mp3", title: "Без імен", dur: "1:03", desc: "ніхто не представляється — спікери підписуються з тексту: роль і стать із граматики, без вигаданих імен" },
 ];
 
 const EFFORTS: { id: Effort; label: string }[] = [
@@ -59,11 +60,18 @@ export default function Page() {
 
   const activeRun = runs.find((r) => r.id === activeRunId) ?? null;
   const annotations = useMemo(() => (activeRun ? buildAnnotations(activeRun.extraction) : []), [activeRun]);
+  // Підпис спікера: ім'я → «Голос N · характеристика з тексту» → «Голос N»
   const speakerNames = useMemo(() => {
     const m = new Map<string, string>();
-    activeRun?.extraction.speakers.forEach((s) => { if (s.name) m.set(s.label, s.name); });
+    if (!transcript) return m;
+    const order = Array.from(new Set(transcript.turns.map((t) => t.speaker)));
+    order.forEach((label, i) => {
+      const s = activeRun?.extraction.speakers.find((x) => x.label === label);
+      const base = `Голос ${i + 1}`;
+      m.set(label, s?.name ?? (s?.descriptor ? `${base} · ${s.descriptor}` : base));
+    });
     return m;
-  }, [activeRun]);
+  }, [activeRun, transcript]);
   const playingId = playing ? activeId : null;
 
   // ---------- курсор: rAF, поки грає ----------

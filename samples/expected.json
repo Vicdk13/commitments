@@ -3,60 +3,285 @@
   "01-main.mp3": {
     "status": "ok",
     "recordingTruncated": false,
-    "speakers": ["Олена", "Дмитро"],
+    "speakers": [
+      "Олена",
+      "Дмитро"
+    ],
     "must_include": [
-      { "id": "push-friday", "status": "accepted", "keywords": ["push"], "owner": "Дмитро", "deadlineContains": "п'ятниц", "deadlineResolvable": false, "note": "виправлений дедлайн: четвер → п'ятниця" },
-      { "id": "dark-theme-cancelled", "status": "cancelled", "keywords": ["темн"], "note": "скасована задача" },
-      { "id": "screenshots-no-owner", "status": "accepted", "keywords": ["скріншот"], "owner": null, "note": "задача без власника" },
-      { "id": "auth-not-accepted", "status": "proposed_not_accepted", "keywords": ["авторизац"], "note": "пропозиція, яку не прийняли" }
+      {
+        "id": "push-friday",
+        "status": "accepted",
+        "keywords": [
+          "push"
+        ],
+        "owner": "Дмитро",
+        "deadlineContains": "п'ятниц",
+        "deadlineResolvable": false,
+        "note": "виправлений дедлайн: четвер → п'ятниця"
+      },
+      {
+        "id": "dark-theme-cancelled",
+        "status": "cancelled",
+        "keywords": [
+          "темн"
+        ],
+        "note": "скасована задача"
+      },
+      {
+        "id": "screenshots-no-owner",
+        "status": "accepted",
+        "keywords": [
+          "скріншот"
+        ],
+        "owner": null,
+        "note": "задача без власника"
+      },
+      {
+        "id": "auth-not-accepted",
+        "status": "proposed_not_accepted",
+        "keywords": [
+          "авторизац"
+        ],
+        "note": "пропозиція, яку не прийняли"
+      }
     ],
     "must_include_questions": [
-      { "id": "q-release-text", "keywords": ["текст"] },
-      { "id": "q-banner", "keywords": ["банер"] }
+      {
+        "id": "q-release-text",
+        "keywords": [
+          "текст"
+        ]
+      },
+      {
+        "id": "q-banner",
+        "keywords": [
+          "банер"
+        ]
+      }
     ],
     "must_exclude": [
-      { "id": "no-thursday", "status": "accepted", "keywords": ["push"], "deadlineContains": "четвер", "note": "старий дедлайн не має лишитись" },
-      { "id": "no-dark-theme-active", "status": "accepted", "keywords": ["темн"], "note": "скасоване не має бути активним" },
-      { "id": "no-auth-accepted", "status": "accepted", "keywords": ["авторизац"], "note": "неприйнята пропозиція не має стати задачею" },
-      { "id": "no-screenshots-owner-dmytro", "status": "accepted", "keywords": ["скріншот"], "owner": "Дмитро", "note": "Дмитро явно відмовився" },
-      { "id": "no-remind", "status": "accepted", "keywords": ["нагада"], "note": "побутове прохання — не робочий комітмент" }
+      {
+        "id": "no-thursday",
+        "status": "accepted",
+        "keywords": [
+          "push"
+        ],
+        "deadlineContains": "четвер",
+        "note": "старий дедлайн не має лишитись"
+      },
+      {
+        "id": "no-dark-theme-active",
+        "status": "accepted",
+        "keywords": [
+          "темн"
+        ],
+        "note": "скасоване не має бути активним"
+      },
+      {
+        "id": "no-auth-accepted",
+        "status": "accepted",
+        "keywords": [
+          "авторизац"
+        ],
+        "note": "неприйнята пропозиція не має стати задачею"
+      },
+      {
+        "id": "no-screenshots-owner-dmytro",
+        "status": "accepted",
+        "keywords": [
+          "скріншот"
+        ],
+        "owner": "Дмитро",
+        "note": "Дмитро явно відмовився"
+      },
+      {
+        "id": "no-remind",
+        "status": "accepted",
+        "keywords": [
+          "нагада"
+        ],
+        "note": "побутове прохання — не робочий комітмент"
+      }
     ]
   },
   "02-variant.mp3": {
     "status": "ok",
     "recordingTruncated": false,
-    "speakers": ["Олена", "Дмитро"],
+    "speakers": [
+      "Олена",
+      "Дмитро"
+    ],
     "must_include": [
-      { "id": "push-friday", "status": "accepted", "keywords": ["push"], "owner": "Дмитро", "deadlineContains": "п'ятниц", "deadlineResolvable": false },
-      { "id": "dark-theme-returned", "status": "accepted", "keywords": ["темн"], "owner": "Дмитро", "deadlineContains": "серед", "deadlineResolvable": false, "note": "змінена домовленість: повернуто в реліз, дедлайн середа наступного тижня" },
-      { "id": "error-texts-no-owner", "status": "accepted", "keywords": ["помил"], "owner": null, "note": "задача без власника («хтось із команди»)" },
-      { "id": "release-shift-rejected", "status": "proposed_not_accepted", "keywords": ["реліз"], "note": "пропозиція зсунути реліз відхилена" }
+      {
+        "id": "push-friday",
+        "status": "accepted",
+        "keywords": [
+          "push"
+        ],
+        "owner": "Дмитро",
+        "deadlineContains": "п'ятниц",
+        "deadlineResolvable": false
+      },
+      {
+        "id": "dark-theme-returned",
+        "status": "accepted",
+        "keywords": [
+          "темн"
+        ],
+        "owner": "Дмитро",
+        "deadlineContains": "серед",
+        "deadlineResolvable": false,
+        "note": "змінена домовленість: повернуто в реліз, дедлайн середа наступного тижня"
+      },
+      {
+        "id": "error-texts-no-owner",
+        "status": "accepted",
+        "keywords": [
+          "помил"
+        ],
+        "owner": null,
+        "note": "задача без власника («хтось із команди»)"
+      },
+      {
+        "id": "release-shift-rejected",
+        "status": "proposed_not_accepted",
+        "keywords": [
+          "реліз"
+        ],
+        "note": "пропозиція зсунути реліз відхилена"
+      }
     ],
     "must_include_questions": [
-      { "id": "q-tests", "keywords": ["тест"] },
-      { "id": "q-contractor", "keywords": ["підрядник"] }
+      {
+        "id": "q-tests",
+        "keywords": [
+          "тест"
+        ]
+      },
+      {
+        "id": "q-contractor",
+        "keywords": [
+          "підрядник"
+        ]
+      }
     ],
     "must_exclude": [
-      { "id": "no-sarcastic-tests", "status": "accepted", "keywords": ["тест", "проєкт"], "note": "САРКАЗМ: «за вечір напишу тести» не є зобов'язанням" },
-      { "id": "no-dark-theme-cancelled", "status": "cancelled", "keywords": ["темн"], "note": "у цьому записі темну тему повернули" },
-      { "id": "no-release-shift-accepted", "status": "accepted", "keywords": ["зсун"], "note": "реліз не рухали" },
-      { "id": "no-error-texts-dmytro", "status": "accepted", "keywords": ["помил"], "owner": "Дмитро", "note": "Дмитро відмовився" }
+      {
+        "id": "no-sarcastic-tests",
+        "status": "accepted",
+        "keywords": [
+          "тест",
+          "проєкт"
+        ],
+        "note": "САРКАЗМ: «за вечір напишу тести» не є зобов'язанням"
+      },
+      {
+        "id": "no-dark-theme-cancelled",
+        "status": "cancelled",
+        "keywords": [
+          "темн"
+        ],
+        "note": "у цьому записі темну тему повернули"
+      },
+      {
+        "id": "no-release-shift-accepted",
+        "status": "accepted",
+        "keywords": [
+          "зсун"
+        ],
+        "note": "реліз не рухали"
+      },
+      {
+        "id": "no-error-texts-dmytro",
+        "status": "accepted",
+        "keywords": [
+          "помил"
+        ],
+        "owner": "Дмитро",
+        "note": "Дмитро відмовився"
+      }
     ]
   },
   "03-no-conclusion.mp3": {
     "status": "no_commitments",
     "statusAlt": "cannot_conclude",
     "recordingTruncated": true,
-    "speakers": ["Андрій", "Наталя"],
+    "speakers": [
+      "Андрій",
+      "Наталя"
+    ],
     "must_include": [],
     "must_include_questions": [
-      { "id": "q-budget-or-homepage", "keywords": ["головн"] },
-      { "id": "q-blog", "keywords": ["блог"] }
+      {
+        "id": "q-budget-or-homepage",
+        "keywords": [
+          "головн"
+        ]
+      },
+      {
+        "id": "q-blog",
+        "keywords": [
+          "блог"
+        ]
+      }
     ],
     "must_exclude": [
-      { "id": "no-accepted-at-all", "status": "accepted", "keywords": [], "note": "жодної прийнятої задачі" },
-      { "id": "no-cancelled-at-all", "status": "cancelled", "keywords": [], "note": "нічого не скасовували" },
-      { "id": "no-owner-anywhere", "anyStatus": true, "keywords": [], "ownerNotNull": true, "note": "жодного власника" }
+      {
+        "id": "no-accepted-at-all",
+        "status": "accepted",
+        "keywords": [],
+        "note": "жодної прийнятої задачі"
+      },
+      {
+        "id": "no-cancelled-at-all",
+        "status": "cancelled",
+        "keywords": [],
+        "note": "нічого не скасовували"
+      },
+      {
+        "id": "no-owner-anywhere",
+        "anyStatus": true,
+        "keywords": [],
+        "ownerNotNull": true,
+        "note": "жодного власника"
+      }
+    ]
+  },
+  "04-no-names.mp3": {
+    "status": "no_commitments",
+    "statusAlt": "cannot_conclude",
+    "recordingTruncated": true,
+    "speakers": [],
+    "speakersNoNames": true,
+    "descriptorsMustNotContain": [
+      "Андрій",
+      "Наталя",
+      "Андрію",
+      "Наталю"
+    ],
+    "must_include": [],
+    "must_include_questions": [
+      {
+        "id": "q-blog",
+        "keywords": [
+          "блог"
+        ]
+      }
+    ],
+    "must_exclude": [
+      {
+        "id": "no-accepted-at-all",
+        "status": "accepted",
+        "keywords": [],
+        "note": "жодної прийнятої задачі"
+      },
+      {
+        "id": "no-owner-anywhere",
+        "anyStatus": true,
+        "keywords": [],
+        "ownerNotNull": true,
+        "note": "жодного власника — імен у записі нема"
+      }
     ]
   }
 }

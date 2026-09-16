@@ -59,7 +59,7 @@ export function Transcript({ transcript, annotations, speakerNames, currentTime,
           >
             <button className="tr-time" onClick={() => onSeek(t.start)} title="Перейти сюди">{fmtTime(t.start)}</button>
             <div className="tr-body">
-              <div className="tr-sp">{speakerNames.get(t.speaker) ?? t.speaker}</div>
+              <div className="tr-sp">{speakerNames.get(t.speaker) ?? `Голос ${spIdx + 1}`}</div>
               <p className="tr-text">
                 {t.words.map((w, i) => {
                   const inQuote = ranges.some((q) => w.start >= q.start - 0.05 && w.end <= q.end + 0.05);
