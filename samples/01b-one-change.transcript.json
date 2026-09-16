@@ -1,0 +1,2796 @@
+{
+  "language": "ukr",
+  "durationSec": 179.04,
+  "turns": [
+    {
+      "index": 0,
+      "speaker": "speaker_0",
+      "start": 0.1,
+      "end": 2.6,
+      "text": "Дмитре, привіт! Це Олена. Чуєш мене? Нормально?",
+      "words": [
+        {
+          "text": "Дмитре,",
+          "start": 0.1,
+          "end": 0.46,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "привіт!",
+          "start": 0.48,
+          "end": 0.76,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "Це",
+          "start": 0.82,
+          "end": 0.92,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "Олена.",
+          "start": 0.94,
+          "end": 1.24,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "Чуєш",
+          "start": 1.6,
+          "end": 1.84,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "мене?",
+          "start": 1.86,
+          "end": 2.2,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "Нормально?",
+          "start": 2.24,
+          "end": 2.6,
+          "speaker": "speaker_0"
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "speaker": "speaker_1",
+      "start": 3.36,
+      "end": 9.24,
+      "text": "Привіт, Олено! Чую. Це Дмитро, якщо що. А то в мене камера не працює. Ти як? Відпочила на вихідних?",
+      "words": [
+        {
+          "text": "Привіт,",
+          "start": 3.36,
+          "end": 3.62,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "Олено!",
+          "start": 3.68,
+          "end": 4.08,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "Чую.",
+          "start": 4.16,
+          "end": 4.43,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "Це",
+          "start": 4.78,
+          "end": 4.86,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "Дмитро,",
+          "start": 4.92,
+          "end": 5.24,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "якщо",
+          "start": 5.32,
+          "end": 5.54,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "що.",
+          "start": 5.66,
+          "end": 5.8,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "А",
+          "start": 6.04,
+          "end": 6.05,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "то",
+          "start": 6.12,
+          "end": 6.18,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "в",
+          "start": 6.2,
+          "end": 6.24,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "мене",
+          "start": 6.28,
+          "end": 6.46,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "камера",
+          "start": 6.5,
+          "end": 6.78,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "не",
+          "start": 6.82,
+          "end": 6.92,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "працює.",
+          "start": 6.94,
+          "end": 7.38,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "Ти",
+          "start": 7.7,
+          "end": 7.78,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "як?",
+          "start": 7.82,
+          "end": 8.08,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "Відпочила",
+          "start": 8.12,
+          "end": 8.56,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "на",
+          "start": 8.62,
+          "end": 8.68,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "вихідних?",
+          "start": 8.7,
+          "end": 9.24,
+          "speaker": "speaker_1"
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "speaker": "speaker_0",
+      "start": 9.86,
+      "end": 17.34,
+      "text": "Та яке там? Дитина хворіла, але нічого, живі. Давай коротко пройдемось по релізу. У мене ще одна зустріч через 20 хвилин.",
+      "words": [
+        {
+          "text": "Та",
+          "start": 9.86,
+          "end": 9.94,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "яке",
+          "start": 9.98,
+          "end": 10.28,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "там?",
+          "start": 10.34,
+          "end": 10.64,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "Дитина",
+          "start": 10.68,
+          "end": 11.1,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "хворіла,",
+          "start": 11.14,
+          "end": 11.52,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "але",
+          "start": 12.1,
+          "end": 12.24,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "нічого,",
+          "start": 12.28,
+          "end": 12.7,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "живі.",
+          "start": 12.76,
+          "end": 13.5,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "Давай",
+          "start": 13.56,
+          "end": 13.74,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "коротко",
+          "start": 13.86,
+          "end": 14.22,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "пройдемось",
+          "start": 14.24,
+          "end": 14.66,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "по",
+          "start": 14.68,
+          "end": 14.74,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "релізу.",
+          "start": 14.76,
+          "end": 15.24,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "У",
+          "start": 15.28,
+          "end": 15.3,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "мене",
+          "start": 15.36,
+          "end": 15.56,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "ще",
+          "start": 15.66,
+          "end": 15.74,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "одна",
+          "start": 15.78,
+          "end": 15.9,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "зустріч",
+          "start": 15.96,
+          "end": 16.36,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "через",
+          "start": 16.46,
+          "end": 16.68,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "20",
+          "start": 16.8,
+          "end": 17.02,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "хвилин.",
+          "start": 17.04,
+          "end": 17.34,
+          "speaker": "speaker_0"
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "speaker": "speaker_1",
+      "start": 18.24,
+      "end": 32.18,
+      "text": "Давай. Я на вихідних, до речі, дивився на нашу авторизацію. Там усе дуже старе. Я би переписав її повністю на новий SDK. Це поки що ідея. Я нічого не чіпав. Це десь тиждень роботи, але потім головного болю буде набагато менше.",
+      "words": [
+        {
+          "text": "Давай.",
+          "start": 18.24,
+          "end": 18.52,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "Я",
+          "start": 18.82,
+          "end": 18.86,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "на",
+          "start": 18.92,
+          "end": 18.96,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "вихідних,",
+          "start": 19.02,
+          "end": 19.4,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "до",
+          "start": 19.46,
+          "end": 19.5,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "речі,",
+          "start": 19.52,
+          "end": 19.74,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "дивився",
+          "start": 19.8,
+          "end": 20.16,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "на",
+          "start": 20.18,
+          "end": 20.26,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "нашу",
+          "start": 20.3,
+          "end": 20.54,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "авторизацію.",
+          "start": 20.58,
+          "end": 21.32,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "Там",
+          "start": 21.54,
+          "end": 21.7,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "усе",
+          "start": 21.72,
+          "end": 21.88,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "дуже",
+          "start": 21.94,
+          "end": 22.14,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "старе.",
+          "start": 22.18,
+          "end": 22.5,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "Я",
+          "start": 22.78,
+          "end": 22.84,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "би",
+          "start": 22.88,
+          "end": 23,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "переписав",
+          "start": 23.04,
+          "end": 23.54,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "її",
+          "start": 23.6,
+          "end": 23.76,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "повністю",
+          "start": 23.8,
+          "end": 24.2,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "на",
+          "start": 24.24,
+          "end": 24.3,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "новий",
+          "start": 24.34,
+          "end": 24.62,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "SDK.",
+          "start": 24.72,
+          "end": 25.1,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "Це",
+          "start": 25.32,
+          "end": 25.38,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "поки",
+          "start": 25.46,
+          "end": 25.66,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "що",
+          "start": 25.72,
+          "end": 25.82,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "ідея.",
+          "start": 25.86,
+          "end": 26.22,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "Я",
+          "start": 26.48,
+          "end": 26.54,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "нічого",
+          "start": 26.6,
+          "end": 26.94,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "не",
+          "start": 26.98,
+          "end": 27.08,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "чіпав.",
+          "start": 27.12,
+          "end": 27.5,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "Це",
+          "start": 27.7,
+          "end": 27.8,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "десь",
+          "start": 27.82,
+          "end": 27.96,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "тиждень",
+          "start": 28.04,
+          "end": 28.34,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "роботи,",
+          "start": 28.38,
+          "end": 28.8,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "але",
+          "start": 29.04,
+          "end": 29.14,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "потім",
+          "start": 29.26,
+          "end": 29.54,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "головного",
+          "start": 29.56,
+          "end": 30,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "болю",
+          "start": 30.12,
+          "end": 30.34,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "буде",
+          "start": 30.42,
+          "end": 30.62,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "набагато",
+          "start": 30.66,
+          "end": 31.06,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "менше.",
+          "start": 31.16,
+          "end": 32.18,
+          "speaker": "speaker_1"
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "speaker": "speaker_0",
+      "start": 32.28,
+      "end": 40.78,
+      "text": "Слухай, я розумію, але не зараз. У нас реліз через два тижні, і я не хочу чіпати авторизацію перед ним. Давай повернемось до цього після релізу. Добре?",
+      "words": [
+        {
+          "text": "Слухай,",
+          "start": 32.28,
+          "end": 32.54,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "я",
+          "start": 32.619,
+          "end": 32.7,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "розумію,",
+          "start": 32.74,
+          "end": 33.38,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "але",
+          "start": 33.42,
+          "end": 33.56,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "не",
+          "start": 33.62,
+          "end": 33.68,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "зараз.",
+          "start": 33.76,
+          "end": 34.28,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "У",
+          "start": 34.32,
+          "end": 34.33,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "нас",
+          "start": 34.4,
+          "end": 34.57,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "реліз",
+          "start": 34.66,
+          "end": 34.92,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "через",
+          "start": 35.02,
+          "end": 35.24,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "два",
+          "start": 35.28,
+          "end": 35.38,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "тижні,",
+          "start": 35.48,
+          "end": 35.9,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "і",
+          "start": 35.93,
+          "end": 36,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "я",
+          "start": 36.04,
+          "end": 36.2,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "не",
+          "start": 36.24,
+          "end": 36.29,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "хочу",
+          "start": 36.38,
+          "end": 36.6,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "чіпати",
+          "start": 36.68,
+          "end": 37.02,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "авторизацію",
+          "start": 37.04,
+          "end": 37.74,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "перед",
+          "start": 37.76,
+          "end": 37.99,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "ним.",
+          "start": 38.02,
+          "end": 38.62,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "Давай",
+          "start": 38.64,
+          "end": 38.839,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "повернемось",
+          "start": 38.87,
+          "end": 39.3,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "до",
+          "start": 39.32,
+          "end": 39.42,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "цього",
+          "start": 39.48,
+          "end": 39.7,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "після",
+          "start": 39.82,
+          "end": 40.1,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "релізу.",
+          "start": 40.14,
+          "end": 40.46,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "Добре?",
+          "start": 40.5,
+          "end": 40.78,
+          "speaker": "speaker_0"
+        }
+      ]
+    },
+    {
+      "index": 5,
+      "speaker": "speaker_1",
+      "start": 41.56,
+      "end": 44.58,
+      "text": "Ну, добре. Я тоді просто занотую собі, щоб не забути.",
+      "words": [
+        {
+          "text": "Ну,",
+          "start": 41.56,
+          "end": 41.62,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "добре.",
+          "start": 41.68,
+          "end": 42.04,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "Я",
+          "start": 42.22,
+          "end": 42.28,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "тоді",
+          "start": 42.34,
+          "end": 42.58,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "просто",
+          "start": 42.6,
+          "end": 42.92,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "занотую",
+          "start": 42.96,
+          "end": 43.42,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "собі,",
+          "start": 43.48,
+          "end": 43.72,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "щоб",
+          "start": 43.84,
+          "end": 43.98,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "не",
+          "start": 44.02,
+          "end": 44.1,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "забути.",
+          "start": 44.14,
+          "end": 44.58,
+          "speaker": "speaker_1"
+        }
+      ]
+    },
+    {
+      "index": 6,
+      "speaker": "speaker_0",
+      "start": 45.34,
+      "end": 53.02,
+      "text": "Так, занотуй. Тепер по багах. Найважливіше: push-сповіщення на Android. Люди скаржаться, що приходять по два рази.",
+      "words": [
+        {
+          "text": "Так,",
+          "start": 45.34,
+          "end": 45.54,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "занотуй.",
+          "start": 45.8,
+          "end": 46.22,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "Тепер",
+          "start": 46.56,
+          "end": 46.9,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "по",
+          "start": 46.92,
+          "end": 47.02,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "багах.",
+          "start": 47.06,
+          "end": 47.42,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "Найважливіше:",
+          "start": 47.7,
+          "end": 48.46,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "push-сповіщення",
+          "start": 48.66,
+          "end": 49.56,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "на",
+          "start": 49.6,
+          "end": 49.74,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "Android.",
+          "start": 49.8,
+          "end": 50.16,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "Люди",
+          "start": 50.58,
+          "end": 50.8,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "скаржаться,",
+          "start": 50.9,
+          "end": 51.35,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "що",
+          "start": 51.48,
+          "end": 51.78,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "приходять",
+          "start": 51.8,
+          "end": 52.28,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "по",
+          "start": 52.32,
+          "end": 52.38,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "два",
+          "start": 52.44,
+          "end": 52.6,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "рази.",
+          "start": 52.66,
+          "end": 53.02,
+          "speaker": "speaker_0"
+        }
+      ]
+    },
+    {
+      "index": 7,
+      "speaker": "speaker_1",
+      "start": 53.76,
+      "end": 61,
+      "text": "Так, я вже дивився. Там проблема з підпискою на топік. Вона дублюється після оновлення. Це я беру на себе. Зроблю до четверга.",
+      "words": [
+        {
+          "text": "Так,",
+          "start": 53.76,
+          "end": 54,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "я",
+          "start": 54.1,
+          "end": 54.16,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "вже",
+          "start": 54.22,
+          "end": 54.34,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "дивився.",
+          "start": 54.4,
+          "end": 54.8,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "Там",
+          "start": 55,
+          "end": 55.18,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "проблема",
+          "start": 55.2,
+          "end": 55.56,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "з",
+          "start": 55.62,
+          "end": 55.68,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "підпискою",
+          "start": 55.7,
+          "end": 56.2,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "на",
+          "start": 56.24,
+          "end": 56.3,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "топік.",
+          "start": 56.38,
+          "end": 56.86,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "Вона",
+          "start": 56.89,
+          "end": 57.06,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "дублюється",
+          "start": 57.12,
+          "end": 57.6,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "після",
+          "start": 57.7,
+          "end": 58.03,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "оновлення.",
+          "start": 58.06,
+          "end": 58.58,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "Це",
+          "start": 58.92,
+          "end": 59.04,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "я",
+          "start": 59.08,
+          "end": 59.18,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "беру",
+          "start": 59.24,
+          "end": 59.4,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "на",
+          "start": 59.46,
+          "end": 59.58,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "себе.",
+          "start": 59.62,
+          "end": 60.02,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "Зроблю",
+          "start": 60.12,
+          "end": 60.42,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "до",
+          "start": 60.44,
+          "end": 60.54,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "четверга.",
+          "start": 60.58,
+          "end": 61,
+          "speaker": "speaker_1"
+        }
+      ]
+    },
+    {
+      "index": 8,
+      "speaker": "speaker_0",
+      "start": 61.74,
+      "end": 71.22,
+      "text": "До четверга — це добре. Хоча стій, у четвер же в нас демо для інвесторів, і ти будеш на ньому потрібен. Давай краще до п'ятниці, щоб не поспішати.",
+      "words": [
+        {
+          "text": "До",
+          "start": 61.74,
+          "end": 61.82,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "четверга",
+          "start": 61.88,
+          "end": 62.32,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "—",
+          "start": 62.52,
+          "end": 62.52,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "це",
+          "start": 62.58,
+          "end": 62.64,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "добре.",
+          "start": 62.72,
+          "end": 63.46,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "Хоча",
+          "start": 63.54,
+          "end": 63.79,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "стій,",
+          "start": 63.96,
+          "end": 64.34,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "у",
+          "start": 64.42,
+          "end": 64.58,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "четвер",
+          "start": 64.64,
+          "end": 65,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "же",
+          "start": 65.06,
+          "end": 65.14,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "в",
+          "start": 65.18,
+          "end": 65.22,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "нас",
+          "start": 65.26,
+          "end": 65.48,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "демо",
+          "start": 65.64,
+          "end": 65.84,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "для",
+          "start": 65.9,
+          "end": 66,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "інвесторів,",
+          "start": 66.04,
+          "end": 66.54,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "і",
+          "start": 66.72,
+          "end": 66.76,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "ти",
+          "start": 67,
+          "end": 67.12,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "будеш",
+          "start": 67.2,
+          "end": 67.42,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "на",
+          "start": 67.46,
+          "end": 67.52,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "ньому",
+          "start": 67.56,
+          "end": 67.76,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "потрібен.",
+          "start": 67.78,
+          "end": 68.179,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "Давай",
+          "start": 68.62,
+          "end": 68.82,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "краще",
+          "start": 68.88,
+          "end": 69.32,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "до",
+          "start": 69.34,
+          "end": 69.48,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "п'ятниці,",
+          "start": 69.52,
+          "end": 70.16,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "щоб",
+          "start": 70.3,
+          "end": 70.44,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "не",
+          "start": 70.48,
+          "end": 70.54,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "поспішати.",
+          "start": 70.6,
+          "end": 71.22,
+          "speaker": "speaker_0"
+        }
+      ]
+    },
+    {
+      "index": 9,
+      "speaker": "speaker_1",
+      "start": 71.98,
+      "end": 76.18,
+      "text": "Окей, тоді до п'ятниці. Push-сповіщення на мені. До п'ятниці.",
+      "words": [
+        {
+          "text": "Окей,",
+          "start": 71.98,
+          "end": 72.28,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "тоді",
+          "start": 72.5,
+          "end": 72.7,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "до",
+          "start": 72.72,
+          "end": 72.82,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "п'ятниці.",
+          "start": 72.86,
+          "end": 73.36,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "Push-сповіщення",
+          "start": 73.7,
+          "end": 74.47,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "на",
+          "start": 74.76,
+          "end": 74.84,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "мені.",
+          "start": 74.9,
+          "end": 75.44,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "До",
+          "start": 75.5,
+          "end": 75.56,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "п'ятниці.",
+          "start": 75.66,
+          "end": 76.18,
+          "speaker": "speaker_1"
+        }
+      ]
+    },
+    {
+      "index": 10,
+      "speaker": "speaker_0",
+      "start": 76.94,
+      "end": 83.48,
+      "text": "Записала. Далі. Темна тема. Ми ж домовлялись, що вона буде в цьому релізі. І ти казав, що вже почав.",
+      "words": [
+        {
+          "text": "Записала.",
+          "start": 76.94,
+          "end": 78.12,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "Далі.",
+          "start": 78.22,
+          "end": 78.44,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "Темна",
+          "start": 78.79,
+          "end": 79.1,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "тема.",
+          "start": 79.18,
+          "end": 79.42,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "Ми",
+          "start": 79.62,
+          "end": 79.7,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "ж",
+          "start": 79.74,
+          "end": 79.76,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "домовлялись,",
+          "start": 79.82,
+          "end": 80.31,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "що",
+          "start": 80.42,
+          "end": 80.52,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "вона",
+          "start": 80.54,
+          "end": 80.8,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "буде",
+          "start": 80.88,
+          "end": 81.06,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "в",
+          "start": 81.1,
+          "end": 81.14,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "цьому",
+          "start": 81.18,
+          "end": 81.38,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "релізі.",
+          "start": 81.42,
+          "end": 81.78,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "І",
+          "start": 82.04,
+          "end": 82.22,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "ти",
+          "start": 82.26,
+          "end": 82.38,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "казав,",
+          "start": 82.4,
+          "end": 82.7,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "що",
+          "start": 82.78,
+          "end": 82.86,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "вже",
+          "start": 82.88,
+          "end": 83.08,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "почав.",
+          "start": 83.1,
+          "end": 83.48,
+          "speaker": "speaker_0"
+        }
+      ]
+    },
+    {
+      "index": 11,
+      "speaker": "speaker_1",
+      "start": 84.24,
+      "end": 92.02,
+      "text": "Почав, але там виявилось значно більше роботи, ніж я думав. Половина екранів зроблена на хардкоджених кольорах. Треба все перебирати руками.",
+      "words": [
+        {
+          "text": "Почав,",
+          "start": 84.24,
+          "end": 84.68,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "але",
+          "start": 84.9,
+          "end": 85,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "там",
+          "start": 85.08,
+          "end": 85.19,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "виявилось",
+          "start": 85.24,
+          "end": 85.7,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "значно",
+          "start": 85.71,
+          "end": 86.08,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "більше",
+          "start": 86.1,
+          "end": 86.36,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "роботи,",
+          "start": 86.4,
+          "end": 86.74,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "ніж",
+          "start": 86.8,
+          "end": 86.96,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "я",
+          "start": 87,
+          "end": 87.04,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "думав.",
+          "start": 87.12,
+          "end": 87.66,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "Половина",
+          "start": 87.7,
+          "end": 88.09,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "екранів",
+          "start": 88.26,
+          "end": 88.62,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "зроблена",
+          "start": 88.64,
+          "end": 89.08,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "на",
+          "start": 89.14,
+          "end": 89.22,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "хардкоджених",
+          "start": 89.26,
+          "end": 89.85,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "кольорах.",
+          "start": 89.88,
+          "end": 90.36,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "Треба",
+          "start": 90.54,
+          "end": 90.76,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "все",
+          "start": 90.82,
+          "end": 91.02,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "перебирати",
+          "start": 91.06,
+          "end": 91.56,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "руками.",
+          "start": 91.6,
+          "end": 92.02,
+          "speaker": "speaker_1"
+        }
+      ]
+    },
+    {
+      "index": 12,
+      "speaker": "speaker_0",
+      "start": 92.78,
+      "end": 98,
+      "text": "Тоді знаєш що? Давай залишимо, але тільки основні екрани. Налаштування підуть у наступний реліз.",
+      "words": [
+        {
+          "text": "Тоді",
+          "start": 92.78,
+          "end": 92.96,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "знаєш",
+          "start": 93.02,
+          "end": 93.26,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "що?",
+          "start": 93.32,
+          "end": 93.44,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "Давай",
+          "start": 93.64,
+          "end": 93.84,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "залишимо,",
+          "start": 93.88,
+          "end": 94.32,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "але",
+          "start": 94.42,
+          "end": 94.66,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "тільки",
+          "start": 94.67,
+          "end": 94.96,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "основні",
+          "start": 95.1,
+          "end": 95.48,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "екрани.",
+          "start": 95.52,
+          "end": 95.92,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "Налаштування",
+          "start": 96.14,
+          "end": 96.7,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "підуть",
+          "start": 96.78,
+          "end": 97.08,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "у",
+          "start": 97.14,
+          "end": 97.22,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "наступний",
+          "start": 97.26,
+          "end": 97.7,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "реліз.",
+          "start": 97.76,
+          "end": 98,
+          "speaker": "speaker_0"
+        }
+      ]
+    },
+    {
+      "index": 13,
+      "speaker": "speaker_1",
+      "start": 98.96,
+      "end": 102.14,
+      "text": "Добре. Основні екрани роблю, налаштування у наступному.",
+      "words": [
+        {
+          "text": "Добре.",
+          "start": 98.96,
+          "end": 99.24,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "Основні",
+          "start": 99.34,
+          "end": 99.7,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "екрани",
+          "start": 99.74,
+          "end": 100.1,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "роблю,",
+          "start": 100.14,
+          "end": 100.44,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "налаштування",
+          "start": 100.64,
+          "end": 101.31,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "у",
+          "start": 101.48,
+          "end": 101.49,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "наступному.",
+          "start": 101.54,
+          "end": 102.14,
+          "speaker": "speaker_1"
+        }
+      ]
+    },
+    {
+      "index": 14,
+      "speaker": "speaker_0",
+      "start": 103.16,
+      "end": 109.66,
+      "text": "Так. І, е, ще одна річ: скріншоти в App Store. Вони ще зі старим дизайном. Треба оновити до релізу.",
+      "words": [
+        {
+          "text": "Так.",
+          "start": 103.16,
+          "end": 103.5,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "І,",
+          "start": 103.66,
+          "end": 103.67,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "е,",
+          "start": 104,
+          "end": 104.16,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "ще",
+          "start": 104.26,
+          "end": 104.34,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "одна",
+          "start": 104.42,
+          "end": 104.62,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "річ:",
+          "start": 104.66,
+          "end": 104.9,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "скріншоти",
+          "start": 105.18,
+          "end": 105.9,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "в",
+          "start": 105.96,
+          "end": 106.14,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "App",
+          "start": 106.18,
+          "end": 106.3,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "Store.",
+          "start": 106.38,
+          "end": 106.96,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "Вони",
+          "start": 106.98,
+          "end": 107.18,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "ще",
+          "start": 107.36,
+          "end": 107.44,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "зі",
+          "start": 107.5,
+          "end": 107.56,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "старим",
+          "start": 107.66,
+          "end": 107.88,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "дизайном.",
+          "start": 107.94,
+          "end": 108.38,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "Треба",
+          "start": 108.4,
+          "end": 108.64,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "оновити",
+          "start": 108.66,
+          "end": 109.1,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "до",
+          "start": 109.14,
+          "end": 109.22,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "релізу.",
+          "start": 109.26,
+          "end": 109.66,
+          "speaker": "speaker_0"
+        }
+      ]
+    },
+    {
+      "index": 15,
+      "speaker": "speaker_1",
+      "start": 110.4,
+      "end": 114.44,
+      "text": "Це не дуже моє, чесно кажучи. Це скоріше до дизайнера або до тебе.",
+      "words": [
+        {
+          "text": "Це",
+          "start": 110.4,
+          "end": 110.5,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "не",
+          "start": 110.54,
+          "end": 110.62,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "дуже",
+          "start": 110.68,
+          "end": 110.88,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "моє,",
+          "start": 110.94,
+          "end": 111.16,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "чесно",
+          "start": 111.3,
+          "end": 111.58,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "кажучи.",
+          "start": 111.6,
+          "end": 112,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "Це",
+          "start": 112.36,
+          "end": 112.44,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "скоріше",
+          "start": 112.48,
+          "end": 112.86,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "до",
+          "start": 112.88,
+          "end": 112.98,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "дизайнера",
+          "start": 113.02,
+          "end": 113.56,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "або",
+          "start": 113.8,
+          "end": 113.96,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "до",
+          "start": 114,
+          "end": 114.12,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "тебе.",
+          "start": 114.16,
+          "end": 114.44,
+          "speaker": "speaker_1"
+        }
+      ]
+    },
+    {
+      "index": 16,
+      "speaker": "speaker_0",
+      "start": 115.24,
+      "end": 123.56,
+      "text": "Так, я розумію, що не твоє, але зробити треба. Давай поки залишимо як задачу, а хто робитиме, вирішимо, коли Марина повернеться з відпустки.",
+      "words": [
+        {
+          "text": "Так,",
+          "start": 115.24,
+          "end": 115.44,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "я",
+          "start": 115.5,
+          "end": 115.54,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "розумію,",
+          "start": 115.58,
+          "end": 115.9,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "що",
+          "start": 116.02,
+          "end": 116.1,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "не",
+          "start": 116.14,
+          "end": 116.24,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "твоє,",
+          "start": 116.26,
+          "end": 116.56,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "але",
+          "start": 116.88,
+          "end": 117.04,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "зробити",
+          "start": 117.12,
+          "end": 117.56,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "треба.",
+          "start": 117.6,
+          "end": 117.88,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "Давай",
+          "start": 118.28,
+          "end": 118.5,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "поки",
+          "start": 118.58,
+          "end": 118.82,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "залишимо",
+          "start": 118.86,
+          "end": 119.3,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "як",
+          "start": 119.36,
+          "end": 119.46,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "задачу,",
+          "start": 119.52,
+          "end": 120.04,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "а",
+          "start": 120.18,
+          "end": 120.26,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "хто",
+          "start": 120.3,
+          "end": 120.46,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "робитиме,",
+          "start": 120.5,
+          "end": 120.96,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "вирішимо,",
+          "start": 121.46,
+          "end": 121.84,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "коли",
+          "start": 121.9,
+          "end": 122.08,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "Марина",
+          "start": 122.12,
+          "end": 122.4,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "повернеться",
+          "start": 122.44,
+          "end": 122.92,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "з",
+          "start": 122.96,
+          "end": 122.98,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "відпустки.",
+          "start": 123,
+          "end": 123.56,
+          "speaker": "speaker_0"
+        }
+      ]
+    },
+    {
+      "index": 17,
+      "speaker": "speaker_1",
+      "start": 124.38,
+      "end": 125.64,
+      "text": "Окей, тоді хай висить.",
+      "words": [
+        {
+          "text": "Окей,",
+          "start": 124.38,
+          "end": 124.66,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "тоді",
+          "start": 124.84,
+          "end": 125.04,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "хай",
+          "start": 125.1,
+          "end": 125.24,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "висить.",
+          "start": 125.28,
+          "end": 125.64,
+          "speaker": "speaker_1"
+        }
+      ]
+    },
+    {
+      "index": 18,
+      "speaker": "speaker_0",
+      "start": 126.66,
+      "end": 134.58,
+      "text": "І ще з відкритого: хто пише текст для опису оновлення? Я можу, але я не впевнена, чи маркетинг не хоче сам.",
+      "words": [
+        {
+          "text": "І",
+          "start": 126.66,
+          "end": 126.72,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "ще",
+          "start": 126.84,
+          "end": 126.98,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "з",
+          "start": 127,
+          "end": 127.04,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "відкритого:",
+          "start": 127.06,
+          "end": 127.78,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "хто",
+          "start": 127.9,
+          "end": 128.34,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "пише",
+          "start": 128.36,
+          "end": 128.699,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "текст",
+          "start": 128.74,
+          "end": 129.08,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "для",
+          "start": 129.18,
+          "end": 129.38,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "опису",
+          "start": 129.46,
+          "end": 129.84,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "оновлення?",
+          "start": 129.9,
+          "end": 130.4,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "Я",
+          "start": 130.979,
+          "end": 131.08,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "можу,",
+          "start": 131.2,
+          "end": 131.56,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "але",
+          "start": 131.86,
+          "end": 132.12,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "я",
+          "start": 132.22,
+          "end": 132.34,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "не",
+          "start": 132.38,
+          "end": 132.48,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "впевнена,",
+          "start": 132.54,
+          "end": 133,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "чи",
+          "start": 133.12,
+          "end": 133.32,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "маркетинг",
+          "start": 133.4,
+          "end": 133.86,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "не",
+          "start": 133.9,
+          "end": 133.96,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "хоче",
+          "start": 134.04,
+          "end": 134.339,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "сам.",
+          "start": 134.38,
+          "end": 134.58,
+          "speaker": "speaker_0"
+        }
+      ]
+    },
+    {
+      "index": 19,
+      "speaker": "speaker_1",
+      "start": 135.36,
+      "end": 138.24,
+      "text": "Не знаю. Це точно не до мене. Запитаю у Сергія.",
+      "words": [
+        {
+          "text": "Не",
+          "start": 135.36,
+          "end": 135.44,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "знаю.",
+          "start": 135.52,
+          "end": 135.78,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "Це",
+          "start": 135.88,
+          "end": 136.06,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "точно",
+          "start": 136.1,
+          "end": 136.44,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "не",
+          "start": 136.5,
+          "end": 136.56,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "до",
+          "start": 136.62,
+          "end": 136.68,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "мене.",
+          "start": 136.74,
+          "end": 137.28,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "Запитаю",
+          "start": 137.36,
+          "end": 137.74,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "у",
+          "start": 137.75,
+          "end": 137.75,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "Сергія.",
+          "start": 137.84,
+          "end": 138.24,
+          "speaker": "speaker_1"
+        }
+      ]
+    },
+    {
+      "index": 20,
+      "speaker": "speaker_0",
+      "start": 138.98,
+      "end": 146.48,
+      "text": "Запитай. І ще питання: чи робимо банер у застосунку про новий реліз? Я не впевнена, що воно взагалі потрібно.",
+      "words": [
+        {
+          "text": "Запитай.",
+          "start": 138.98,
+          "end": 139.5,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "І",
+          "start": 139.84,
+          "end": 139.9,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "ще",
+          "start": 140,
+          "end": 140.1,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "питання:",
+          "start": 140.16,
+          "end": 140.62,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "чи",
+          "start": 140.78,
+          "end": 140.9,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "робимо",
+          "start": 140.94,
+          "end": 141.36,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "банер",
+          "start": 141.4,
+          "end": 141.76,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "у",
+          "start": 141.8,
+          "end": 141.84,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "застосунку",
+          "start": 141.9,
+          "end": 142.62,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "про",
+          "start": 142.78,
+          "end": 142.96,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "новий",
+          "start": 143.04,
+          "end": 143.3,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "реліз?",
+          "start": 143.34,
+          "end": 143.7,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "Я",
+          "start": 144.22,
+          "end": 144.32,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "не",
+          "start": 144.42,
+          "end": 144.5,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "впевнена,",
+          "start": 144.56,
+          "end": 144.98,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "що",
+          "start": 145.08,
+          "end": 145.18,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "воно",
+          "start": 145.22,
+          "end": 145.44,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "взагалі",
+          "start": 145.5,
+          "end": 145.9,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "потрібно.",
+          "start": 146,
+          "end": 146.48,
+          "speaker": "speaker_0"
+        }
+      ]
+    },
+    {
+      "index": 21,
+      "speaker": "speaker_1",
+      "start": 147.18,
+      "end": 149.7,
+      "text": "Мені здається, не потрібно, але це вже ти вирішуй.",
+      "words": [
+        {
+          "text": "Мені",
+          "start": 147.18,
+          "end": 147.38,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "здається,",
+          "start": 147.4,
+          "end": 147.78,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "не",
+          "start": 147.82,
+          "end": 147.9,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "потрібно,",
+          "start": 147.96,
+          "end": 148.4,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "але",
+          "start": 148.62,
+          "end": 148.76,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "це",
+          "start": 148.82,
+          "end": 148.9,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "вже",
+          "start": 148.94,
+          "end": 149.1,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "ти",
+          "start": 149.14,
+          "end": 149.24,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "вирішуй.",
+          "start": 149.26,
+          "end": 149.7,
+          "speaker": "speaker_1"
+        }
+      ]
+    },
+    {
+      "index": 22,
+      "speaker": "speaker_0",
+      "start": 150.4,
+      "end": 168.02,
+      "text": "Подумаю. Добре, давай підсумуємо. Push-сповіщення: ти до п'ятниці. Темна тема лишається. Основні екрани: ти. Скріншоти треба зробити. Власника поки нема. Авторизацію не чіпаємо до релізу. Текст і банер відкриті.",
+      "words": [
+        {
+          "text": "Подумаю.",
+          "start": 150.4,
+          "end": 150.86,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "Добре,",
+          "start": 151.42,
+          "end": 151.68,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "давай",
+          "start": 151.96,
+          "end": 152.2,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "підсумуємо.",
+          "start": 152.22,
+          "end": 152.8,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "Push-сповіщення:",
+          "start": 153.42,
+          "end": 154.28,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "ти",
+          "start": 154.56,
+          "end": 154.76,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "до",
+          "start": 155.04,
+          "end": 155.1,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "п'ятниці.",
+          "start": 155.16,
+          "end": 155.74,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "Темна",
+          "start": 156.16,
+          "end": 156.5,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "тема",
+          "start": 156.54,
+          "end": 156.88,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "лишається.",
+          "start": 157.18,
+          "end": 157.78,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "Основні",
+          "start": 158.04,
+          "end": 158.44,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "екрани:",
+          "start": 158.48,
+          "end": 158.96,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "ти.",
+          "start": 159.24,
+          "end": 159.42,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "Скріншоти",
+          "start": 160.04,
+          "end": 160.7,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "треба",
+          "start": 160.92,
+          "end": 161.16,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "зробити.",
+          "start": 161.24,
+          "end": 161.68,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "Власника",
+          "start": 161.98,
+          "end": 162.46,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "поки",
+          "start": 162.5,
+          "end": 162.7,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "нема.",
+          "start": 162.74,
+          "end": 162.96,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "Авторизацію",
+          "start": 163.46,
+          "end": 164.36,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "не",
+          "start": 164.48,
+          "end": 164.6,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "чіпаємо",
+          "start": 164.66,
+          "end": 165.1,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "до",
+          "start": 165.12,
+          "end": 165.18,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "релізу.",
+          "start": 165.22,
+          "end": 165.64,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "Текст",
+          "start": 166.22,
+          "end": 166.6,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "і",
+          "start": 166.68,
+          "end": 166.74,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "банер",
+          "start": 166.8,
+          "end": 167.14,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "відкриті.",
+          "start": 167.46,
+          "end": 168.02,
+          "speaker": "speaker_0"
+        }
+      ]
+    },
+    {
+      "index": 23,
+      "speaker": "speaker_1",
+      "start": 168.8,
+      "end": 173.62,
+      "text": "Все так. Тільки нагадай мені в середу про push-сповіщення, а то я забуду.",
+      "words": [
+        {
+          "text": "Все",
+          "start": 168.8,
+          "end": 168.94,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "так.",
+          "start": 169.04,
+          "end": 169.28,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "Тільки",
+          "start": 169.6,
+          "end": 170,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "нагадай",
+          "start": 170.1,
+          "end": 170.44,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "мені",
+          "start": 170.5,
+          "end": 170.68,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "в",
+          "start": 170.72,
+          "end": 170.74,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "середу",
+          "start": 170.8,
+          "end": 171.2,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "про",
+          "start": 171.22,
+          "end": 171.38,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "push-сповіщення,",
+          "start": 171.5,
+          "end": 172.32,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "а",
+          "start": 172.54,
+          "end": 172.6,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "то",
+          "start": 172.68,
+          "end": 172.78,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "я",
+          "start": 172.94,
+          "end": 173.1,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "забуду.",
+          "start": 173.14,
+          "end": 173.62,
+          "speaker": "speaker_1"
+        }
+      ]
+    },
+    {
+      "index": 24,
+      "speaker": "speaker_0",
+      "start": 174.34,
+      "end": 176.859,
+      "text": "Нагадаю. Все. Дякую. Побігла.",
+      "words": [
+        {
+          "text": "Нагадаю.",
+          "start": 174.34,
+          "end": 174.899,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "Все.",
+          "start": 175.42,
+          "end": 175.62,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "Дякую.",
+          "start": 175.88,
+          "end": 176.28,
+          "speaker": "speaker_0"
+        },
+        {
+          "text": "Побігла.",
+          "start": 176.46,
+          "end": 176.859,
+          "speaker": "speaker_0"
+        }
+      ]
+    },
+    {
+      "index": 25,
+      "speaker": "speaker_1",
+      "start": 177.6,
+      "end": 178.4,
+      "text": "Давай. Бувай!",
+      "words": [
+        {
+          "text": "Давай.",
+          "start": 177.6,
+          "end": 177.88,
+          "speaker": "speaker_1"
+        },
+        {
+          "text": "Бувай!",
+          "start": 178.1,
+          "end": 178.4,
+          "speaker": "speaker_1"
+        }
+      ]
+    }
+  ]
+}

@@ -104,6 +104,111 @@
       }
     ]
   },
+  "01b-one-change.mp3": {
+    "status": "ok",
+    "recordingTruncated": false,
+    "speakers": [
+      "Олена",
+      "Дмитро"
+    ],
+    "must_include": [
+      {
+        "id": "push-friday",
+        "status": "accepted",
+        "keywords": [
+          "push"
+        ],
+        "owner": "Дмитро",
+        "deadlineContains": "п'ятниц",
+        "deadlineResolvable": false,
+        "note": "виправлений дедлайн: четвер → п'ятниця"
+      },
+      {
+        "id": "screenshots-no-owner",
+        "status": "accepted",
+        "keywords": [
+          "скріншот"
+        ],
+        "owner": null,
+        "note": "задача без власника"
+      },
+      {
+        "id": "auth-not-accepted",
+        "status": "proposed_not_accepted",
+        "keywords": [
+          "авторизац"
+        ],
+        "note": "пропозиція, яку не прийняли"
+      },
+      {
+        "id": "dark-theme-kept",
+        "status": "accepted",
+        "keywords": [
+          "темн"
+        ],
+        "owner": "Дмитро",
+        "note": "ЄДИНА ЗМІНА відносно 01: темну тему лишили (основні екрани)"
+      }
+    ],
+    "must_include_questions": [
+      {
+        "id": "q-release-text",
+        "keywords": [
+          "текст"
+        ]
+      },
+      {
+        "id": "q-banner",
+        "keywords": [
+          "банер"
+        ]
+      }
+    ],
+    "must_exclude": [
+      {
+        "id": "no-thursday",
+        "status": "accepted",
+        "keywords": [
+          "push"
+        ],
+        "deadlineContains": "четвер",
+        "note": "старий дедлайн не має лишитись"
+      },
+      {
+        "id": "no-auth-accepted",
+        "status": "accepted",
+        "keywords": [
+          "авторизац"
+        ],
+        "note": "неприйнята пропозиція не має стати задачею"
+      },
+      {
+        "id": "no-screenshots-owner-dmytro",
+        "status": "accepted",
+        "keywords": [
+          "скріншот"
+        ],
+        "owner": "Дмитро",
+        "note": "Дмитро явно відмовився"
+      },
+      {
+        "id": "no-remind",
+        "status": "accepted",
+        "keywords": [
+          "нагада"
+        ],
+        "note": "побутове прохання — не робочий комітмент"
+      },
+      {
+        "id": "no-dark-theme-cancelled",
+        "status": "cancelled",
+        "keywords": [
+          "темн"
+        ],
+        "note": "у цій версії темну тему не скасовували"
+      }
+    ]
+  },
   "02-variant.mp3": {
     "status": "ok",
     "recordingTruncated": false,

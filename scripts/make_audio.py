@@ -27,6 +27,8 @@ VOICES = {
     "Дмитро": "lBvcwD2nQgxr2mkKA71z",  # Ievgen Diachenko
     "Наталя": "JOQst3wrnXwBfeTEW2ts",  # Yaryna Lisova - Natural Conversation
     "Андрій": "zCW9T5OJ4bUQxldhLWUA",  # Ivo - Clear, confident and narrative
+    "Ірина": "bsourKGZEagmttzrIzmu",   # Kateryna Pavlenko - Professional & Calm
+    "Тарас": "h9NSQvWZaC4NFusYsxT9",   # Artem Klopotenko - Podcast Pro
 }
 MODEL = "eleven_v3"  # краще тримає наголоси й інтонацію; підтримує теги типу [sarcastic]
 PAUSE_SEC = 0.6          # пауза між репліками
