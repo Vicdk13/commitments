@@ -5,6 +5,7 @@ import type { ExtractRun, StageMetrics, Transcript as T } from "@/lib/types";
 import { DEFAULT_MODEL_ID, MODELS, getModel, type Effort } from "@/lib/models";
 import { buildAnnotations, type Annotation } from "@/lib/annotations";
 import { fmtTime } from "@/lib/format";
+import { toMarkdown } from "@/lib/exportText";
 import { Timeline } from "@/components/Timeline";
 import { Transcript } from "@/components/Transcript";
 import { Summary } from "@/components/Summary";
@@ -24,6 +25,10 @@ const EFFORTS: { id: Effort; label: string }[] = [
   { id: "high", label: "high — ретельно" },
 ];
 
+const STICKY_OFFSET = 80; // висота липкого файл-бару + відступ (UI-06 / UI-08)
+
+type CopyState = "idle" | "ok" | "fail";
+
 export default function Page() {
   const [file, setFile] = useState<File | null>(null);
   const [url, setUrl] = useState<string | null>(null);
@@ -39,10 +44,16 @@ export default function Page() {
 
   const [modelId, setModelId] = useState<string>(DEFAULT_MODEL_ID);
   const [effort, setEffort] = useState<Effort>(getModel(DEFAULT_MODEL_ID).defaultEffort);
+  const [settingsOpen, setSettingsOpen] = useState(false); // UI-02
+
+  const [copyJsonState, setCopyJsonState] = useState<CopyState>("idle");
+  const [copyTextState, setCopyTextState] = useState<CopyState>("idle");
+  const [fallbackText, setFallbackText] = useState<string | null>(null);
 
   // відтворення
   const audioRef = useRef<HTMLAudioElement>(null);
   const [currentTime, setCurrentTime] = useState(0);
+  const [playing, setPlaying] = useState(false);
   const [activeId, setActiveId] = useState<string | null>(null);
   const stopAt = useRef<number | null>(null);
 
@@ -53,6 +64,7 @@ export default function Page() {
     activeRun?.extraction.speakers.forEach((s) => { if (s.name) m.set(s.label, s.name); });
     return m;
   }, [activeRun]);
+  const playingId = playing ? activeId : null;
 
   // ---------- курсор: rAF, поки грає ----------
   useEffect(() => {
@@ -67,13 +79,18 @@ export default function Page() {
       }
       if (!a.paused) raf = requestAnimationFrame(tick);
     };
-    const onPlay = () => { raf = requestAnimationFrame(tick); };
-    const onPause = () => { cancelAnimationFrame(raf); setCurrentTime(a.currentTime); };
+    const onPlay = () => { setPlaying(true); raf = requestAnimationFrame(tick); };
+    const onPause = () => { setPlaying(false); cancelAnimationFrame(raf); setCurrentTime(a.currentTime); };
     const onSeeked = () => setCurrentTime(a.currentTime);
     a.addEventListener("play", onPlay);
     a.addEventListener("pause", onPause);
+    a.addEventListener("ended", onPause);
     a.addEventListener("seeked", onSeeked);
-    return () => { cancelAnimationFrame(raf); a.removeEventListener("play", onPlay); a.removeEventListener("pause", onPause); a.removeEventListener("seeked", onSeeked); };
+    return () => {
+      cancelAnimationFrame(raf);
+      a.removeEventListener("play", onPlay); a.removeEventListener("pause", onPause);
+      a.removeEventListener("ended", onPause); a.removeEventListener("seeked", onSeeked);
+    };
   }, [url]);
 
   // лічильник очікування
@@ -106,12 +123,14 @@ export default function Page() {
   const reset = () => {
     if (url) URL.revokeObjectURL(url);
     setFile(null); setUrl(null); setDuration(0); setStage("idle"); setError(null);
-    setTranscript(null); setTranscribeMetrics(undefined); setRuns([]); setActiveRunId(null); setActiveId(null); setCurrentTime(0);
+    setTranscript(null); setTranscribeMetrics(undefined); setRuns([]); setActiveRunId(null);
+    setActiveId(null); setCurrentTime(0); setPlaying(false); setFallbackText(null);
   };
 
   const runExtract = useCallback(async (t: T, m: string, e: Effort) => {
     setStage("extracting");
     setError(null);
+    setSettingsOpen(false);
     const res = await fetch("/api/extract", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -148,10 +167,25 @@ export default function Page() {
     void process(new File([b], name, { type: "audio/mpeg" }));
   };
   const onModelChange = (id: string) => { setModelId(id); setEffort(getModel(id).defaultEffort); };
-  const copyJson = () => { if (activeRun) void navigator.clipboard.writeText(JSON.stringify({ ...activeRun, transcribe: transcribeMetrics }, null, 2)); };
+
+  // ---------- експорт (UI-11) ----------
+  const copy = async (text: string, set: (s: CopyState) => void) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      set("ok");
+    } catch {
+      set("fail");
+      setFallbackText(text);
+    }
+    setTimeout(() => set("idle"), 1500);
+  };
+  const copyJson = () => { if (activeRun) void copy(JSON.stringify({ ...activeRun, transcribe: transcribeMetrics }, null, 2), setCopyJsonState); };
+  const copyText = () => { if (activeRun && file) void copy(toMarkdown(activeRun, file.name, transcript?.durationSec ?? duration, transcribeMetrics), setCopyTextState); };
+  const copyLabel = (s: CopyState, base: string) => (s === "ok" ? "Скопійовано ✓" : s === "fail" ? "Не вдалося" : base);
 
   const busy = stage === "transcribing" || stage === "extracting";
   const spec = getModel(modelId);
+  const done = stage === "done" && !!activeRun;
 
   return (
     <main className={`wrap ${activeRun ? "has-result" : ""}`}>
@@ -163,20 +197,30 @@ export default function Page() {
         <div className="meta">до 3 хв · 2 спікери · одна мова</div>
       </header>
 
-      <div className="controls">
-        <label><span>Модель</span>
-          <select value={modelId} onChange={(e) => onModelChange(e.target.value)} disabled={busy}>
-            {MODELS.map((m) => <option key={m.id} value={m.id}>{m.label}</option>)}
-          </select>
-        </label>
-        <label><span>Effort</span>
-          <select value={effort} onChange={(e) => setEffort(e.target.value as Effort)} disabled={busy || !spec.supportsEffort}>
-            {EFFORTS.map((e) => <option key={e.id} value={e.id}>{e.label}</option>)}
-          </select>
-        </label>
-        <div className="model-note">{spec.note} · ${spec.inputUsdPerMTok} / ${spec.outputUsdPerMTok} за 1M токенів</div>
-        {transcript && !busy && (
-          <button className="rerun" onClick={() => void runExtract(transcript, modelId, effort)}>Проаналізувати цією моделлю</button>
+      {/* UI-02: панель моделі — згорнута в один рядок */}
+      <div className={`controls ${settingsOpen ? "open" : ""}`}>
+        {!settingsOpen ? (
+          <div className="controls-row">
+            <span className="controls-sum">Аналіз: <b>{spec.label}</b> · {effort} · {spec.note}</span>
+            <button className="link" onClick={() => setSettingsOpen(true)} disabled={busy}>Змінити</button>
+          </div>
+        ) : (
+          <>
+            <label><span>Модель</span>
+              <select value={modelId} onChange={(e) => onModelChange(e.target.value)} disabled={busy}>
+                {MODELS.map((m) => <option key={m.id} value={m.id}>{m.label}</option>)}
+              </select>
+            </label>
+            <label><span>Effort</span>
+              <select value={effort} onChange={(e) => setEffort(e.target.value as Effort)} disabled={busy || !spec.supportsEffort}>
+                {EFFORTS.map((e) => <option key={e.id} value={e.id}>{e.label}</option>)}
+              </select>
+            </label>
+            <div className="model-note">{spec.note} · ${spec.inputUsdPerMTok} / ${spec.outputUsdPerMTok} за 1M токенів</div>
+            {transcript && !busy
+              ? <button className="rerun" onClick={() => void runExtract(transcript, modelId, effort)}>Проаналізувати цією моделлю</button>
+              : <button className="link" onClick={() => setSettingsOpen(false)}>Згорнути</button>}
+          </>
         )}
       </div>
 
@@ -199,16 +243,21 @@ export default function Page() {
 
       {file && (
         <div className="filebar">
-          <div>
+          <div className="filebar-info">
             <div className="name">{file.name}</div>
-            <div className="dur">{duration ? fmtTime(duration) : "…"}{transcript ? ` · ${transcript.turns.length} реплік · ${transcript.language}` : ""}</div>
+            <div className="dur">
+              {duration ? fmtTime(duration) : "…"}
+              {transcript ? ` · ${transcript.turns.length} реплік · ${transcript.language}` : ""}
+              {done && transcribeMetrics ? ` · розпізнано за ${(transcribeMetrics.ms / 1000).toFixed(1)} с` : ""}
+              {done && activeRun ? ` · ${activeRun.modelLabel} за ${(activeRun.metrics.ms / 1000).toFixed(1)} с` : ""}
+            </div>
           </div>
           <audio ref={audioRef} src={url ?? undefined} controls preload="metadata" onLoadedMetadata={(e) => setDuration(e.currentTarget.duration)} />
           <button className="reset" onClick={reset}>Інший файл</button>
         </div>
       )}
 
-      {file && (
+      {file && !done && (
         <div className="steps">
           <Step state={stage === "transcribing" ? "running" : transcript ? "done" : stage === "error" && !transcript ? "error" : "idle"}
             label="Розпізнавання"
@@ -222,6 +271,13 @@ export default function Page() {
       {error && (
         <div className="error">{error}
           {transcript && <> · <button className="reset" onClick={() => void runExtract(transcript, modelId, effort)}>Повторити аналіз</button></>}
+        </div>
+      )}
+
+      {fallbackText && (
+        <div className="fallback">
+          <div className="fallback-head">Clipboard недоступний — скопіюйте вручну <button className="link" onClick={() => setFallbackText(null)}>закрити</button></div>
+          <textarea readOnly value={fallbackText} onFocus={(e) => e.currentTarget.select()} />
         </div>
       )}
 
@@ -243,7 +299,7 @@ export default function Page() {
                 <span>{transcript.turns.length} реплік · клік по часу — перемотка{activeRun ? " · рішення позначені там, де прозвучали" : ""}</span>
               </div>
               <Transcript transcript={transcript} annotations={annotations} speakerNames={speakerNames}
-                currentTime={currentTime} activeId={activeId} onSeek={seek} onPick={pick} />
+                currentTime={currentTime} activeId={activeId} playingId={playingId} stickyOffset={STICKY_OFFSET} onSeek={seek} onPick={pick} />
             </section>
           </div>
 
@@ -251,10 +307,17 @@ export default function Page() {
             {activeRun ? (
               <>
                 <div className="side-head">
-                  <h2>Підсумок</h2>
-                  <button onClick={copyJson}>JSON</button>
+                  <div>
+                    <h2>Підсумок</h2>
+                    <span className="side-hint">клік по пункту — прослухати цитату</span>
+                  </div>
+                  <div className="side-actions">
+                    <button onClick={copyText} disabled={copyTextState !== "idle"}>{copyLabel(copyTextState, "Текст")}</button>
+                    <button onClick={copyJson} disabled={copyJsonState !== "idle"}>{copyLabel(copyJsonState, "JSON")}</button>
+                  </div>
                 </div>
-                <Summary extraction={activeRun.extraction} annotations={annotations} activeId={activeId} onPick={pick} />
+                <Summary extraction={activeRun.extraction} annotations={annotations} turns={transcript.turns}
+                  activeId={activeId} playingId={playingId} onPick={pick} onSeek={seek} />
               </>
             ) : (
               <div className="side-wait">

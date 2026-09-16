@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import type { Transcript } from "@/lib/types";
 import type { Annotation } from "@/lib/annotations";
 import { fmtTime } from "@/lib/format";
+import { KindIcon } from "./KindIcon";
 
 type Props = {
   transcript: Transcript;
@@ -49,10 +50,10 @@ export function Timeline({ transcript, annotations, speakerNames, currentTime, a
           ))}
         </div>
         <div className="tl-legend">
-          <span className="tl-k accepted"><i />прийнято</span>
-          <span className="tl-k cancelled"><i />скасовано</span>
-          <span className="tl-k proposed"><i />не прийнято</span>
-          <span className="tl-k question"><i />питання</span>
+          <span className="tl-k accepted"><KindIcon kind="accepted" />прийнято</span>
+          <span className="tl-k cancelled"><KindIcon kind="cancelled" />скасовано</span>
+          <span className="tl-k proposed"><KindIcon kind="proposed" />не прийнято</span>
+          <span className="tl-k question"><KindIcon kind="question" />питання</span>
         </div>
       </div>
 
@@ -66,14 +67,14 @@ export function Timeline({ transcript, annotations, speakerNames, currentTime, a
             onClick={() => onPick(a)}
             onMouseEnter={() => setHover(a)}
             onMouseLeave={() => setHover(null)}
-            aria-label={`${a.title}: ${a.text}`}
+            aria-label={`${a.n}. ${a.title}: ${a.text}`}
           >
-            <span className="tl-m-dot" />
+            <span className="tl-m-dot">{a.n}</span>
           </button>
         ))}
         {hover && (
-          <div className={`tl-tip ${hover.kind}`} style={{ left: pct(hover.quote.start) }}>
-            <b>{hover.title}</b> · {fmtTime(hover.quote.start)}
+          <div className={`tl-tip ${hover.kind} ${edgeClass(hover.quote.start / dur, 0.15)}`} style={{ left: pct(hover.quote.start) }}>
+            <b><KindIcon kind={hover.kind} /> #{hover.n} {hover.title}</b> · {fmtTime(hover.quote.start)}
             <div>{hover.text}</div>
             {hover.meta && <small>{hover.meta}</small>}
           </div>
@@ -111,10 +112,17 @@ export function Timeline({ transcript, annotations, speakerNames, currentTime, a
             />
           ))}
         </div>
-        <div className="tl-cursor" style={{ left: pct(currentTime) }}>
+        <div className={`tl-cursor ${edgeClass(currentTime / dur, 0.04)}`} style={{ left: pct(currentTime) }}>
           <em>{fmtTime(currentTime)}</em>
         </div>
       </div>
     </div>
   );
+}
+
+/** UI-12: підпис курсора/тултіпа біля країв не має вилазити за панель. */
+function edgeClass(ratio: number, threshold: number): string {
+  if (ratio < threshold) return "edge-l";
+  if (ratio > 1 - threshold) return "edge-r";
+  return "";
 }
