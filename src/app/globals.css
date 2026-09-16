@@ -196,7 +196,7 @@ button.link:disabled { color: var(--ink-3); cursor: default; }
 .tl-cursor.edge-r em { left: auto; right: 0; transform: none; }
 
 /* ---------- transcript ---------- */
-.tr { padding: 6px 0 10px; max-height: 70vh; overflow: auto; }
+.tr { position: relative; padding: 6px 0 10px; max-height: 70vh; overflow: auto; scroll-padding-top: 16px; }
 .tr-turn { display: grid; grid-template-columns: 56px 1fr; gap: 8px; padding: 8px 18px; border-left: 3px solid transparent; transition: background .2s; }
 .tr-turn.playing { background: #fbfbf7; border-left-color: var(--ink); }
 .tr-turn.live { background: #fffdf3; }

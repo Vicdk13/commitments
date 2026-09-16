@@ -35,12 +35,15 @@ export function Transcript({ transcript, annotations, speakerNames, currentTime,
   const userScrolledAt = useRef(0);     // коли користувач сам крутив контейнер
   const programmatic = useRef(0);       // до цього часу події scroll — наші, не користувача
 
+  // Репліка ставиться у верхню третину контейнера: текст і картка рішення під ним лишаються в кадрі.
   const scrollToTurn = (idx: number, smooth = true) => {
     const c = box.current, el = rows.current.get(idx);
     if (!c || !el) return;
     programmatic.current = Date.now() + 800;
     if (c.scrollHeight > c.clientHeight + 4) {
-      c.scrollTo({ top: el.offsetTop - (c.clientHeight - el.offsetHeight) / 2, behavior: smooth ? "smooth" : "auto" });
+      const top = Math.max(0, el.offsetTop - Math.min(c.clientHeight * 0.3, Math.max(0, c.clientHeight - el.offsetHeight) / 2));
+      if (Math.abs(c.scrollTop - top) < 8) return;
+      c.scrollTo({ top, behavior: smooth ? "smooth" : "auto" });
     } else {
       const y = el.getBoundingClientRect().top + window.scrollY - stickyOffset - 16;
       window.scrollTo({ top: y, behavior: smooth ? "smooth" : "auto" });
