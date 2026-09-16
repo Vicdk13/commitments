@@ -17,16 +17,6 @@ export type ModelSpec = {
 
 export const MODELS: ModelSpec[] = [
   {
-    id: "claude-sonnet-5",
-    label: "Claude Sonnet 5",
-    provider: "anthropic",
-    inputUsdPerMTok: 2,
-    outputUsdPerMTok: 10,
-    defaultEffort: "medium",
-    supportsEffort: true,
-    note: "35/35 на тестовому наборі, ≈$0,016/хв",
-  },
-  {
     id: "claude-opus-5",
     label: "Claude Opus 5",
     provider: "anthropic",
@@ -34,7 +24,17 @@ export const MODELS: ModelSpec[] = [
     outputUsdPerMTok: 25,
     defaultEffort: "high",
     supportsEffort: true,
-    note: "35/35, ≈$0,038/хв, повільніше",
+    note: "найстабільніший на тестовому наборі, ≈$0,04/хв",
+  },
+  {
+    id: "claude-sonnet-5",
+    label: "Claude Sonnet 5",
+    provider: "anthropic",
+    inputUsdPerMTok: 2,
+    outputUsdPerMTok: 10,
+    defaultEffort: "high",
+    supportsEffort: true,
+    note: "у 2 рази дешевше, але іноді губить пункти, ≈$0,02/хв",
   },
 ];
 
